@@ -1,14 +1,14 @@
 # dependencies
-/isaac-frontend/.next
-/isaac-frontend/node_modules
-/isaac-frontend/.pnp
-/isaac-frontend/.pnp.js
+.next
+node_modules
+.pnp
+.pnp.js
 
 # testing
-/isaac-frontend/coverage
+coverage
 
 # production
-/isaac-frontend/build
+build
 
 # misc
 .DS_Store
@@ -16,7 +16,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
-/isaac-frontend/.env
+.env
 
 npm-debug.log*
 yarn-debug.log*

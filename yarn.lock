@@ -1401,7 +1401,7 @@
     "jest-util" "^26.6.2"
     "slash" "^3.0.0"
 
-"@jest/core@^26.6.0", "@jest/core@^26.6.3":
+"@jest/core@^26.6.0":
   "integrity" "sha512-xvV1kKbhfUqFVuZ8Cyo+JPpipAHHAV3kcDBftiduK8EICXmTFddryy3P7NfZt8Pv37rA9nEJBKCCkglCPt/Xjw=="
   "resolved" "https://registry.npmjs.org/@jest/core/-/core-26.6.3.tgz"
   "version" "26.6.3"
