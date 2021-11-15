@@ -21,3 +21,9 @@ Start the react app. It will run on http://localhost:3000/
 ```bash
 npm start
 ```
+
+The tests can be started using the command:
+```bash
+npm test
+```
+
