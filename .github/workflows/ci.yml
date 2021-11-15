@@ -39,8 +39,8 @@ jobs:
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: af912/ISAAC-frontend
-        tags: v1, latest
+        image: af912/isaac-frontend
+        tags: latest
         registry: docker.io
         # dockerfile: Dockerfile.ci
         username: ${{ secrets.DOCKER_USERNAME }}
