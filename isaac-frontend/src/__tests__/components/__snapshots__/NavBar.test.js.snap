@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render NavBar correctly 1`] = `
+<ForwardRef(Box)
+  sx={
+    Object {
+      "display": "flex",
+    }
+  }
+>
+  <CssBaseline />
+  <ForwardRef(Drawer)
+    anchor="left"
+    sx={
+      Object {
+        "& .MuiDrawer-paper": Object {
+          "boxSizing": "border-box",
+          "width": 240,
+        },
+        "flexShrink": 0,
+        "width": 240,
+      }
+    }
+    variant="permanent"
+  >
+    <ForwardRef(Toolbar)
+      style={
+        Object {
+          "backgroundImage": "url(test-file-stub)",
+          "backgroundPosition": "center center",
+          "backgroundRepeat": "no-repeat",
+          "backgroundSize": "cover",
+          "height": 100,
+        }
+      }
+    />
+    <ForwardRef(Divider) />
+    <Route
+      path="/"
+      render={[Function]}
+    />
+    <ForwardRef(Divider) />
+  </ForwardRef(Drawer)>
+  <ForwardRef(Box)
+    component="main"
+    sx={
+      Object {
+        "bgcolor": "background.default",
+        "flexGrow": 1,
+        "p": 3,
+      }
+    }
+  >
+    <ForwardRef(Toolbar) />
+  </ForwardRef(Box)>
+</ForwardRef(Box)>
+`;
