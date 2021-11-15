@@ -14,8 +14,7 @@ jobs:
 
     runs-on: ubuntu-latest
     defaults:
-      run:
-        working-directory: ./isaac-frontend
+      run: cd ./isaac-frontend
     strategy:
       matrix:
         node-version: [14.x]
