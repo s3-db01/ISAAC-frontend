@@ -112,7 +112,7 @@ const generateGrid = async (row, col, data) => {
 const HeatmapGrid = ({data}) => {
 	const [grid, setGrid] = useState(null);
 
-	if (!grid) return <div>Loading...</div>;
+	if (!data) return <div>Loading...</div>;
 
 	useEffect(async () => {
 		const grid = await generateGrid(rows, cols, data);
@@ -142,7 +142,7 @@ const HeatmapGrid = ({data}) => {
 		};
 	};
 
-	if (!grid) return <div>Loading...</div>;
+	// if (!grid) return <div>Loading...</div>;
 	return (
 		<div>
 			<AppBar
