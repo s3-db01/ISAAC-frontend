@@ -94,6 +94,13 @@ export default function PermanentDrawerLeft() {
 								to="/settings"
 								icon={<SettingsIcon/>}
 							/>
+							<Tab
+								label={<div style={{fontFamily: 'Open Sans'}}>Heatmap old</div>}
+								value="/heatmap-old"
+								component={Link}
+								to="/heatmap-old"
+								icon={<ThermostatIcon/>}
+							/>
 						</Tabs>
 					)}>
 				</Route>

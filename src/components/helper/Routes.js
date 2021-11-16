@@ -5,6 +5,7 @@ import React, {
 
 import Dashboard from '../Dashboard';
 import HeatmapGrid from '../HeatmapGrid';
+import Heatmap from '../Heatmap';
 import Notifications from '../Notifications';
 import Advanced from '../Advanced';
 import Settings from '../Settings';
@@ -46,6 +47,9 @@ const Routes = () => {
 			</Route>
 			<Route path='/settings'>
 				<Settings />
+			</Route>
+			<Route path='/heatmap-old'>
+				<Heatmap data={data}/>
 			</Route>
 			<Route path='/'>
 				<Dashboard data={data}/>
