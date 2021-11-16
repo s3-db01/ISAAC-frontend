@@ -367,6 +367,14 @@
     "x": 30,
     "y": 7,
     "temp": 23,
+    "humidity": 35,
+    "dateTime" : "November  15, 2021 17:00:00"
+  },
+  {
+    "id": 15,
+    "x": 30,
+    "y": 7,
+    "temp": 25,
     "humidity": 40,
     "dateTime" : "November  15, 2021 17:00:00"
   },
@@ -375,15 +383,7 @@
     "x": 30,
     "y": 7,
     "temp": 23,
-    "humidity": 40,
-    "dateTime" : "November  15, 2021 17:00:00"
-  },
-  {
-    "id": 15,
-    "x": 30,
-    "y": 7,
-    "temp": 23,
-    "humidity": 40,
+    "humidity": 43,
     "dateTime" : "November 15, 2021 17:00:00"
   },
   {
@@ -391,6 +391,14 @@
     "x": 31,
     "y": 13,
     "temp": 28,
+    "humidity": 42,
+    "dateTime" : "November 16, 2021 17:00:00"
+  },
+  {
+    "id": 16,
+    "x": 31,
+    "y": 13,
+    "temp": 25,
     "humidity": 40,
     "dateTime" : "November 16, 2021 17:00:00"
   },
@@ -399,16 +407,88 @@
     "x": 31,
     "y": 13,
     "temp": 28,
-    "humidity": 40,
+    "humidity": 39,
     "dateTime" : "November 16, 2021 17:00:00"
   },
   {
     "id": 16,
     "x": 31,
     "y": 13,
+    "temp": 25,
+    "humidity": 41,
+    "dateTime" : "November 17, 2021 17:00:00"
+  },
+  {
+    "id": 16,
+    "x": 31,
+    "y": 13,
+    "temp": 22,
+    "humidity": 47,
+    "dateTime" : "November 17, 2021 17:00:00"
+  },
+  {
+    "id": 16,
+    "x": 31,
+    "y": 13,
+    "temp": 26,
+    "humidity": 38,
+    "dateTime" : "November 18, 2021 17:00:00"
+  },
+  {
+    "id": 16,
+    "x": 31,
+    "y": 13,
+    "temp": 24,
+    "humidity": 49,
+    "dateTime" : "November 18, 2021 17:00:00"
+  },
+  {
+    "id": 16,
+    "x": 31,
+    "y": 13,
+    "temp": 26,
+    "humidity": 43,
+    "dateTime" : "November 19, 2021 17:00:00"
+  },
+  {
+    "id": 16,
+    "x": 31,
+    "y": 13,
     "temp": 28,
-    "humidity": 40,
-    "dateTime" : "November 16, 2021 17:00:00"
+    "humidity": 50,
+    "dateTime" : "November 19, 2021 17:00:00"
+  },
+  {
+    "id": 16,
+    "x": 31,
+    "y": 13,
+    "temp": 24,
+    "humidity": 53,
+    "dateTime" : "November 20, 2021 17:00:00"
+  },
+  {
+    "id": 16,
+    "x": 31,
+    "y": 13,
+    "temp": 27,
+    "humidity": 46,
+    "dateTime" : "November 20, 2021 17:00:00"
+  },
+  {
+    "id": 16,
+    "x": 31,
+    "y": 13,
+    "temp": 26,
+    "humidity": 44,
+    "dateTime" : "November 21, 2021 17:00:00"
+  },
+  {
+    "id": 16,
+    "x": 31,
+    "y": 13,
+    "temp": 23,
+    "humidity": 41,
+    "dateTime" : "November 21, 2021 17:00:00"
   }
 ],
 
