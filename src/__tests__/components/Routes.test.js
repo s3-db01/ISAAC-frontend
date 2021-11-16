@@ -15,9 +15,9 @@ import toJSON from 'enzyme-to-json';
 import ReactTestUtils from 'react-dom/test-utils';
 
 import {serverFetch} from '../../utils/server-fetch';
-// afterEach(() => {
-// 	jest.resetModules();
-// });
+afterEach(() => {
+	jest.resetModules();
+});
 
 // const mockFetch = Promise.resolve({
 // 	json: () => Promise.resolve({
@@ -33,22 +33,22 @@ import {serverFetch} from '../../utils/server-fetch';
 // 	}),
 // });
 // global.fetch = jest.fn(() => mockFetch);
-// global.fetch = jest.fn();
-// global.serverFetch = jest.fn();
-// describe('testing Routes', () => {
+global.fetch = jest.fn();
+global.serverFetch = jest.fn();
+describe('testing Routes', () => {
 
-// 	beforeEach(() => {
+	beforeEach(() => {
 
-// 	});
-// 	test('rendering the routes', () => {
-// 		const wrapper = mount(
-// 			<MemoryRouter initialEntries={[ '/' ]}>
-// 				<Routes/>
-// 			</MemoryRouter>
-// 		);
-// 		expect(wrapper).not.toBeNull();
-// 	});
-// });
+	});
+	test('rendering the routes', () => {
+		const wrapper = mount(
+			<MemoryRouter initialEntries={[ '/' ]}>
+				<Routes/>
+			</MemoryRouter>
+		);
+		expect(wrapper).not.toBeNull();
+	});
+});
 
 
 
