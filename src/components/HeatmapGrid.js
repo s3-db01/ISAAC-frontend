@@ -100,15 +100,6 @@ const generateGrid = async (row, col, data) => {
 	return grid;
 };
 
-// const getColor = (value, temp) => {
-// 	if (value === 1) {
-// 		const value = heatMapColorforValue(temp);
-// 		return {
-// 			backgroundColor: value
-// 		};
-// 	}
-// };
-
 const HeatmapGrid = ({data}) => {
 	const [grid, setGrid] = useState(null);
 
