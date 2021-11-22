@@ -1,4 +1,3 @@
-/*eslint no-mixed-spaces-and-tabs: "error"*/
 import {serverFetch} from '../utils/server-fetch';
 import axios from 'axios';
 
