@@ -20,11 +20,12 @@ const Routes = () => {
 	useEffect( async () => {
 		try {
 			const rawData = await serverFetch();
-			setData(
-				await rawData.map((obj) => {
-					obj.dateTime = new Date(obj.dateTime);
-					return obj;
-				}));
+			// .then();
+
+			setData(rawData.map((obj) => {
+				obj.dateTime = new Date(obj.dateTime);
+				return obj;
+			}));
 		}
 		catch (error) {
 			console.log(error);
