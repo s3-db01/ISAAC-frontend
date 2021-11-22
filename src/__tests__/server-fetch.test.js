@@ -6,65 +6,33 @@ import axios from 'axios';
 
 jest.mock('axios');
 
-// axios.get = jest.fn(() =>
-// 	Promise.resolve({
-// 		json: () => Promise.resolve({
-// 			entries: [
-// 				{
-// 					'id': 1,
-// 					'temp': 25.0,
-// 					'humidity': 45,
-// 					'dateTime': 'October 11, 2021 08:00:00',
-// 				},
-// 				{
-// 					'id': 2,
-// 					'temp': 26.1,
-// 					'humidity': 45,
-// 					'dateTime': 'October 11, 2021 08:10:00',
-// 				},
-// 				{
-// 					'id': 3,
-// 					'temp': 25.9,
-// 					'humidity': 45,
-// 					'dateTime': 'October 11, 2021 08:20:00',
-// 				},
-// 				{
-// 					'id': 4,
-// 					'temp': 26,
-// 					'humidity': 48,
-// 					'dateTime': 'October 11, 2021 08:30:00',
-// 				},
-// 			]}),
-// 	}),
-// );
 
-
-// const entries = [	// mock return value
-// 	{
-// 		'id': 1,
-// 		'temp': 25.0,
-// 		'humidity': 45,
-// 		'dateTime': 'October 11, 2021 08:00:00',
-// 	},
-// 	{
-// 		'id': 2,
-// 		'temp': 26.1,
-// 		'humidity': 45,
-// 		'dateTime': 'October 11, 2021 08:10:00',
-// 	},
-// 	{
-// 		'id': 3,
-// 		'temp': 25.9,
-// 		'humidity': 45,
-// 		'dateTime': 'October 11, 2021 08:20:00',
-// 	},
-// 	{
-// 		'id': 4,
-// 		'temp': 26,
-// 		'humidity': 48,
-// 		'dateTime': 'October 11, 2021 08:30:00',
-// 	},
-// ];
+const data = [	// mock return value
+	{
+		'id': 1,
+		'temp': 25.0,
+		'humidity': 45,
+		'dateTime': 'October 11, 2021 08:00:00',
+	},
+	{
+		'id': 2,
+		'temp': 26.1,
+		'humidity': 45,
+		'dateTime': 'October 11, 2021 08:10:00',
+	},
+	{
+		'id': 3,
+		'temp': 25.9,
+		'humidity': 45,
+		'dateTime': 'October 11, 2021 08:20:00',
+	},
+	{
+		'id': 4,
+		'temp': 26,
+		'humidity': 48,
+		'dateTime': 'October 11, 2021 08:30:00',
+	},
+];
 
 
 describe('server fetching tests', () => {
@@ -76,48 +44,22 @@ describe('server fetching tests', () => {
 
 		// mocking the function axios.get
 		axios.get.mockImplementation(() =>
-			Promise.resolve({
-				entries:[	// mock return value
-					{
-						'id': 1,
-						'temp': 25.0,
-						'humidity': 45,
-						'dateTime': 'October 11, 2021 08:00:00',
-					},
-					{
-						'id': 2,
-						'temp': 26.1,
-						'humidity': 45,
-						'dateTime': 'October 11, 2021 08:10:00',
-					},
-					{
-						'id': 3,
-						'temp': 25.9,
-						'humidity': 45,
-						'dateTime': 'October 11, 2021 08:20:00',
-					},
-					{
-						'id': 4,
-						'temp': 26,
-						'humidity': 48,
-						'dateTime': 'October 11, 2021 08:30:00',
-					},
-				]
-			}),
+			Promise.resolve({data}),
 		);
 
 
 
 		// calling the function to be tested
 		const rawData = await serverFetch();
+		// const rawData =  await axios.get('dick');
 		console.log(rawData);
 		//expect statements
 		// console.log(rawData);
-		// expect(rawData).toEqual(entries);
-		// expect(axios.get).toHaveBeenCalledTimes(1);
+		expect(rawData).toEqual(data);
+		expect(axios.get).toHaveBeenCalledTimes(1);
 	});
-});
 
+});
 // 	// it('exception handling', async () => {
 // 	// 	axios.get.mockReturnValueOnce(() =>
 // 	// 		Promise.reject(Error('Failed to fetch'))
