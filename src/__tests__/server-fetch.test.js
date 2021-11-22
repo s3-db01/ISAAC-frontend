@@ -118,23 +118,23 @@ describe('server fetching tests', () => {
 	});
 
 
-	// it('exception handling', async () => {
-	// 	axios.get.mockReturnValueOnce(() =>
-	// 		Promise.reject(Error('Failed to fetch'))
-	// 		// Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
-	// 		// 	setTimeout(() => {
-	// 		// 		reject('Failed to fetch');
-	// 		// 	}, 10);
-	// 		// })
-	// 	);
+// 	// it('exception handling', async () => {
+// 	// 	axios.get.mockReturnValueOnce(() =>
+// 	// 		Promise.reject(Error('Failed to fetch'))
+// 	// 		// Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
+// 	// 		// 	setTimeout(() => {
+// 	// 		// 		reject('Failed to fetch');
+// 	// 		// 	}, 10);
+// 	// 		// })
+// 	// 	);
 
 
 
-	// 	const rawData = await serverFetch();
-	// 	console.log(rawData.message);
+// 	// 	const rawData = await serverFetch();
+// 	// 	console.log(rawData.message);
 
 
-	// 	// expect(rawData.message).toEqual('Failed to fetch');
-	// 	// expect(fetch).toHaveBeenCalledTimes(1);
-	// });
-});
+// 	// 	// expect(rawData.message).toEqual('Failed to fetch');
+// 	// 	// expect(fetch).toHaveBeenCalledTimes(1);
+// 	// });
+// });
