@@ -6,6 +6,6 @@ export const serverFetch = async () => {
 		return  response.data;
 	}
 	catch(error) {
-		console.log(error);
+		return error.message;
 	}
 };
