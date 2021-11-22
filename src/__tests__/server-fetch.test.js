@@ -116,7 +116,7 @@ describe('server fetching tests', () => {
 		// expect(rawData).toEqual(entries);
 		// expect(axios.get).toHaveBeenCalledTimes(1);
 	});
-
+});
 
 // 	// it('exception handling', async () => {
 // 	// 	axios.get.mockReturnValueOnce(() =>
