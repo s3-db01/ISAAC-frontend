@@ -1,88 +1,113 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-mixed-spaces-and-tabs */
 import {serverFetch} from '../utils/server-fetch';
+import axios from 'axios';
 
-afterEach(() => {
-	jest.resetModules();
-});
 
-global.fetch = jest.fn(() =>
-	Promise.resolve({
-		json: () => Promise.resolve({
-			entries:
-        [
-        	{
-        		'id': 1,
-        		'temp': 25.0,
-        		'humidity': 45,
-        		'dateTime': 'October 11, 2021 08:00:00',
-        	},
-        	{
-        		'id': 2,
-        		'temp': 26.1,
-        		'humidity': 45,
-        		'dateTime': 'October 11, 2021 08:10:00',
-        	},
-        	{
-        		'id': 3,
-        		'temp': 25.9,
-        		'humidity': 45,
-        		'dateTime': 'October 11, 2021 08:20:00',
-        	},
-        	{
-        		'id': 4,
-        		'temp': 26,
-        		'humidity': 48,
-        		'dateTime': 'October 11, 2021 08:30:00',
-        	},
-        ],
-		}),
-	}),
-);
+jest.mock('axios');
+
+// global.axios.get = jest.fn(() =>
+// 	Promise.resolve({
+// 		json: () => Promise.resolve({
+// 			entries:
+//         [
+//         	{
+//         		'id': 1,
+//         		'temp': 25.0,
+//         		'humidity': 45,
+//         		'dateTime': 'October 11, 2021 08:00:00',
+//         	},
+//         	{
+//         		'id': 2,
+//         		'temp': 26.1,
+//         		'humidity': 45,
+//         		'dateTime': 'October 11, 2021 08:10:00',
+//         	},
+//         	{
+//         		'id': 3,
+//         		'temp': 25.9,
+//         		'humidity': 45,
+//         		'dateTime': 'October 11, 2021 08:20:00',
+//         	},
+//         	{
+//         		'id': 4,
+//         		'temp': 26,
+//         		'humidity': 48,
+//         		'dateTime': 'October 11, 2021 08:30:00',
+//         	},
+//         ],
+// 		}),
+// 	}),
+// );
+const entries = [	// mock return value
+	{
+		'id': 1,
+		'temp': 25.0,
+		'humidity': 45,
+		'dateTime': 'October 11, 2021 08:00:00',
+	},
+	{
+		'id': 2,
+		'temp': 26.1,
+		'humidity': 45,
+		'dateTime': 'October 11, 2021 08:10:00',
+	},
+	{
+		'id': 3,
+		'temp': 25.9,
+		'humidity': 45,
+		'dateTime': 'October 11, 2021 08:20:00',
+	},
+	{
+		'id': 4,
+		'temp': 26,
+		'humidity': 48,
+		'dateTime': 'October 11, 2021 08:30:00',
+	},
+];
+
 
 describe('server fetching tests', () => {
+	afterEach(() => {
+		jest.resetModules();
+	});
+
 	it('should return data', async () => {
-		const rawData = await serverFetch();
-
-		expect(rawData).toEqual({
-			entries: [
-				{
-					'id': 1,
-					'temp': 25.0,
-					'humidity': 45,
-					'dateTime': 'October 11, 2021 08:00:00',
-				},
-				{
-					'id': 2,
-					'temp': 26.1,
-					'humidity': 45,
-					'dateTime': 'October 11, 2021 08:10:00',
-				},
-				{
-					'id': 3,
-					'temp': 25.9,
-					'humidity': 45,
-					'dateTime': 'October 11, 2021 08:20:00',
-				},
-				{
-					'id': 4,
-					'temp': 26,
-					'humidity': 48,
-					'dateTime': 'October 11, 2021 08:30:00',
-				},
-			],
-		});
-		expect(fetch).toHaveBeenCalledTimes(1);
-	});
-
-
-	it('exception handling', async () => {
-		fetch.mockImplementationOnce(() =>
-			Promise.reject(new Error('Failed to fetch')),
+		
+		// mocking the function axios.get
+		axios.get = jest.fn().mockImplementationOnce(() =>
+			Promise.resolve({
+				json: () => Promise.resolve({entries})
+			})
 		);
+
+
+
+		// calling the function to be tested
 		const rawData = await serverFetch();
 
-		expect(rawData.message).toEqual('Failed to fetch');
-		expect(fetch).toHaveBeenCalledTimes(1);
+		//expect statements
+		console.log(rawData);
+		// expect(rawData).toEqual(entries);
+		// expect(axios.get).toHaveBeenCalledTimes(1);
 	});
+
+
+	// it('exception handling', async () => {
+	// 	axios.get.mockReturnValueOnce(() =>
+	// 		Promise.reject(Error('Failed to fetch'))
+	// 		// Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
+	// 		// 	setTimeout(() => {
+	// 		// 		reject('Failed to fetch');
+	// 		// 	}, 10);
+	// 		// })
+	// 	);
+
+
+
+	// 	const rawData = await serverFetch();
+	// 	console.log(rawData.message);
+
+
+	// 	// expect(rawData.message).toEqual('Failed to fetch');
+	// 	// expect(fetch).toHaveBeenCalledTimes(1);
+	// });
 });

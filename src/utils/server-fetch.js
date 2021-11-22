@@ -1,11 +1,12 @@
+import axios from 'axios';
+
 export const serverFetch = async () => {
 	try {
-		const res = await fetch('http://localhost:5000/entries')
-			.then(res => res.json())
-			.then(data => {
-				return data;
-			});
-	} catch (error) {
-		return error;
+		const response = await axios.get('http://localhost:5000/entries');
+		console.log(response.data);
+		return response.data;
+	}
+	catch(error) {
+		console.log(error);
 	}
 };

@@ -18,18 +18,11 @@ import {
 const Routes = () => {
 	const [data, setData] = React.useState(null);
 	useEffect( async () => {
-		try {
-			const rawData = await serverFetch();
-			// .then();
-
-			setData(rawData.map((obj) => {
-				obj.dateTime = new Date(obj.dateTime);
-				return obj;
-			}));
-		}
-		catch (error) {
-			console.log(error);
-		}
+		const rawData = await serverFetch();
+		setData(rawData.map((obj) => {
+			obj.dateTime = new Date(obj.dateTime);
+			return obj;
+		}));
 	}, []);
 
 	// if (!data) return <div>Loading...</div>;
