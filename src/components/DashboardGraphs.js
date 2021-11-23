@@ -88,19 +88,6 @@ const DashboardGraphs = ({data}) => {
 			labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
 				'Friday', 'Saturday', 'Sunday'],
 			datasets: [
-				// {
-				//   fill: true,
-				//   label: 'This week',
-				//   // filter to return an array with temps of current week
-				//   data: thisWeekMeasurements.map((obj) => obj.average),
-				//   backgroundColor: [
-				//     'rgba(13, 99, 132, 0.3)',
-				//   ],
-				//   borderColor: [
-				//     'rgba(13, 99, 132, 1)',
-				//   ],
-				//   borderWidth: 2,
-				// },
 				{
 					fill: false,
 					label: 'This week',
