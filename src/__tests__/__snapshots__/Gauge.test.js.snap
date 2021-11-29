@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render NavBar correctly 1`] = `
+exports[`renders correctly 1`] = `
 <div>
   Loading...
 </div>

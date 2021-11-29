@@ -3,6 +3,7 @@ import Gauge from '../components/Gauge';
 import { shallow, render, mount, configure } from 'enzyme';
 import toJSON from 'enzyme-to-json';
 import {act} from 'react-dom/test-utils';
+import renderer from 'react-test-renderer';
 const data = [
 	{
 		'id': 1,
@@ -30,15 +31,22 @@ const data = [
 	},
 ];
 
-test('adds state to the component', () => {
-	let myComponent;
-	let instance;
-	act(() => {
-		myComponent = mount(<Gauge name='Temperature' data={data} />);
-		myComponent.setState({...data});
-		instance = myComponent.instance();
-	});
-	expect(instance.state).toEqual(data);
+// test('adds state to the component', () => {
+// 	let myComponent;
+// 	let instance;
+// 	act(() => {
+// 		myComponent = mount(<Gauge name='Temperature' data={data} />);
+// 		myComponent.setState({...data});
+// 		instance = myComponent.instance();
+// 	});
+// 	expect(instance.state).toEqual(data);
+// });
+
+it('renders correctly', () => {
+	const tree = renderer
+		.create(<Gauge name='Temperature' data={data} />)
+		.toJSON();
+	expect(tree).toMatchSnapshot();
 });
 
 // test('should render Gauge correctly', () => {
