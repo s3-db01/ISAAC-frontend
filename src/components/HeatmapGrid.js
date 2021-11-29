@@ -198,7 +198,7 @@ const HeatmapGrid = ({data}) => {
 		};
 	};
 
-	if (!grid) return <div>Loading...</div>;
+	// if (!grid) return <div>Loading...</div>;
 	return (
 		<div>
 			<AppBar

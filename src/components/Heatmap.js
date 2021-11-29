@@ -54,7 +54,7 @@ const Heatmap = ({data}) => {
 
 		// heatmapInstance.setData(dataHeatmap);
 
-		makeRows(16, 16);
+		makeRows(14, 32);
 	}, []);
 	
 
@@ -75,13 +75,16 @@ const Heatmap = ({data}) => {
 
 	function makeRows(rows, cols) {
 		const container = document.getElementsByClassName('grid-container')[0];
-		console.log(container);
+
 		container.style.setProperty('--grid-rows', rows);
 		container.style.setProperty('--grid-cols', cols);
-		for (let c = 0; c < (rows * cols); c++) {
-			let cell = document.createElement('div');
-			cell.innerText = (c);
-			container.appendChild(cell).className = 'grid-item';
+
+		for (let rowIndex = 1; rowIndex <= rows; rowIndex++) {
+			for(let columnIndex = 1; columnIndex <= cols; columnIndex++) {
+				let cell = document.createElement('div');
+				cell.id = `row-${rowIndex} cell-${columnIndex}`;
+				container.appendChild(cell).className = 'grid-item';
+			}
 		}
 	}
 	
@@ -100,15 +103,10 @@ const Heatmap = ({data}) => {
 				</Toolbar>
 			</AppBar>
 			<div className='heatmap-container'>
-				{/* <div style={mainContentStyle}>
-					<img src={iotCrop} className="image"/>
-				</div> */}
 				<div className='grid-container'>
-					{/* https://stackoverflow.com/questions/62262742/make-div-as-high-as-background-image/62262990#62262990
-					https://stackoverflow.com/questions/57550082/creating-a-16x16-grid-using-javascript */}
 				</div>
+				
 			</div>
-			{/* <HeatmapGrid/> */}
 		</div>
 	);
 };
