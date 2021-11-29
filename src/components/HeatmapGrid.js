@@ -5,6 +5,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {createTheme} from '@material-ui/core/styles';
+import h337 from 'heatmap.js';
 
 const rows = 14;
 const cols = 32;
@@ -109,6 +110,70 @@ const HeatmapGrid = ({data}) => {
 		const grid = await generateGrid(rows, cols, data);
 
 		setGrid(grid);
+
+		const heatmapInstance = h337.create({
+			// only container is required, the rest will be defaults
+			container: document.querySelector('.heatmap-container'),
+		});
+		const points = [];
+		for (let i = 0; i < data.length; i++) {
+			const element = data[i];
+			const point = {
+				x: element.x * 40 - 20,
+				y: element.y * 40 - 20,
+				value: element.temp,
+			};
+
+			// const leftPoint = {
+			// 	x: (element.x - 0.3) * 40 - 20,
+			// 	y: element.y * 40 - 20,
+			// 	value: element.temp,
+			// };
+
+			// const rightPoint = {
+			// 	x: (element.x + 0.3) * 40 - 20,
+			// 	y: element.y * 40 - 20,
+			// 	value: element.temp,
+			// };
+
+			// const upPoint = {
+			// 	x: element.x * 40 - 20,
+			// 	y: (element.y + 0.3) * 40 - 20,
+			// 	value: element.temp,
+			// };
+
+			// const downPoint = {
+			// 	x: element.x * 40 - 20,
+			// 	y: (element.y - 0.3) * 40 - 20,
+			// 	value: element.temp,
+			// };
+
+			points.push(point);
+			// points.push(leftPoint);
+			// // points.push(rightPoint);
+			// // points.push(upPoint);
+			// points.push(downPoint);
+
+		}
+		var nuConfig = {
+			radius: 10,
+			maxOpacity: 1,
+			minOpacity: 0.5,
+			blur: .9,
+		};
+		heatmapInstance.configure(nuConfig);
+		console.log(points);
+
+		// heatmap data format
+		const dataHeatmap = {
+			max: 27, // to change
+			data: points,
+		};
+
+		// if you have a set of datapoints always use setData instead of addData
+		// for data initialization
+		// console.log(dataHeatmap);
+		heatmapInstance.setData(dataHeatmap);
 	}, []);
 
 	const getStyle = (value, x , y) => {
@@ -149,20 +214,22 @@ const HeatmapGrid = ({data}) => {
 				</Toolbar>
 			</AppBar>
 			<div className='gridContainer'>
-				<div
-					className='gridboardGrid'
-					style={{
-						display: 'grid',
-						gridTemplateColumns: `repeat(${cols}, 40px`,
-						margin: '0vh',
-					}}>
-					{grid.map((rows, y) => rows.map((col, x) => <div
-						key={`${y}-${x}`}
-						style={getStyle(grid[y][x], x, y)}
-					// style={getColor(grid[y][x])}
-					></div>))}
+				<div className='.heatmap-container'>
+					<div
+						className='gridboardGrid'
+						style={{
+							display: 'grid',
+							gridTemplateColumns: `repeat(${cols}, 40px`,
+							margin: '0vh',
+						}}>
+						{grid.map((rows, y) => rows.map((col, x) => <div
+							key={`${y}-${x}`}
+							style={getStyle(grid[y][x], x, y)}
+							// style={getColor(grid[y][x])}
+						></div>))}
+					</div>
+					<img src={iotSvg} className="floor3Grid"/>
 				</div>
-				<img src={iotSvg} className="floor3Grid"/>
 			</div>
 		</div>
 	);
