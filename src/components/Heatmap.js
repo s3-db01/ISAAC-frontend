@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import {createTheme} from '@material-ui/core/styles';
 import HeatmapGrid from './HeatmapGrid';
 import h337 from 'heatmap.js';
-import iotCrop from '../images/iot-crop1.png';
 
 import '../index.css';
 
@@ -19,42 +18,45 @@ const Heatmap = ({data}) => {
 		);
 	}
 	useEffect( () => {
-		// const heatmapInstance = h337.create({
-		// 	// only container is required, the rest will be defaults
-		// 	container: document.querySelector('.heatmap-container'),
-		// 	radius: 20,
-		// 	maxOpacity: 5,
-		// 	minOpacity: 0.6,
-		// 	blur: .7,
-		// });
+		makeRows(14, 32);	// create grid for placing points of the heatmap
+		const heatmapInstance = h337.create({
+			// only container is required, the rest will be defaults
+			container: document.querySelector('.heatmap-container'),
+			radius: 20,
+			maxOpacity: 5,
+			minOpacity: 4,
+			blur: .7,
+		});
+		
+
 		const points = [];
+
 		for (let i = 0; i < data.length; i++) {
-			const element = data[i];
+			// represents the reading from a sensor
+			const entry = data[i];	
+
+			// represents the div used for getting the position of the point
+			const cell = document.getElementById(`row-${entry.x} col-${entry.y}`);
+
 			const point = {
-				x: element.x * 40 - 20,
-				y: element.y * 40 - 20,
-				value: element.temp,
-				radius:123
+				x: cell.offsetLeft + 20,
+				y: cell.offsetTop + 20,
+				value: entry.temperature,
+				radius:35
 			};
 
 			points.push(point);
 		}
 
-		// heatmapInstance.configure(nuConfig);
-		console.log(points);
-
 		// heatmap data format
 		const dataHeatmap = {
-			max: 27, // to change
+			max: 5.6, // to change
 			data: points,
 		};
 
 		// if you have a set of datapoints always use setData instead of addData
 		// for data initialization
-
-		// heatmapInstance.setData(dataHeatmap);
-
-		makeRows(14, 32);
+		heatmapInstance.setData(dataHeatmap);
 	}, []);
 	
 
@@ -82,7 +84,7 @@ const Heatmap = ({data}) => {
 		for (let rowIndex = 1; rowIndex <= rows; rowIndex++) {
 			for(let columnIndex = 1; columnIndex <= cols; columnIndex++) {
 				let cell = document.createElement('div');
-				cell.id = `row-${rowIndex} cell-${columnIndex}`;
+				cell.id = `row-${rowIndex} col-${columnIndex}`;
 				container.appendChild(cell).className = 'grid-item';
 			}
 		}
@@ -103,9 +105,7 @@ const Heatmap = ({data}) => {
 				</Toolbar>
 			</AppBar>
 			<div className='heatmap-container'>
-				<div className='grid-container'>
-				</div>
-				
+				<div className='grid-container'></div>
 			</div>
 		</div>
 	);

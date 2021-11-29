@@ -88,12 +88,14 @@ code {
   top: 0;
   left: 0;
   /* repeat columns of the grid, where var(--grid-cols) represents the number
-  of columns and minmax(0, 1fr) returns the size of a cell*/
-  grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
+  of columns and 40px represents size of a cell*/
+  grid-template-columns: repeat(var(--grid-cols), 40px);
 
   /* grid-template-columns: repeat(autofit, minmax(0, 1fr)); */
 }
 
 .grid-item {
   /* padding: 0%; */
+  width: 40px;
+  height: 40px;
 }
