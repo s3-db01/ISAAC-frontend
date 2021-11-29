@@ -66,3 +66,38 @@ code {
   width: 40px;
   height: 40px;
 }
+
+
+:root {
+  --grid-cols: 1;
+  --grid-rows: 1;
+}
+.heatmap-container {
+  position: relative;
+  /* padding = ratio height/width */
+  padding-bottom: 43.75%; 
+  background-image: url("./images/iot-crop1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.grid-container {
+  display: grid;
+  /* grid-gap: 1em; */
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  /* background-image: url(); */
+
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  
+}
+
+.grid-item {
+  padding: 1em;
+  border: 1px solid #ddd;
+  text-align: center;
+}
