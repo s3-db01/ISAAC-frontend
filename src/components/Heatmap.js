@@ -17,7 +17,26 @@ const Heatmap = ({data}) => {
 			<div>Loading...</div>
 		);
 	}
+	
+	// this method gets the last entries with the same dateTime
+	function getLastEntriesArray(data) {
+		let lastIndex = data.length - 1;
+		let lastDateTime = data[lastIndex].dateTime;
+		let currentDateTime = data[lastIndex].dateTime; 
+		const entries = [];
+	
+		// the loop runs in reversed order while the currentDateTime value does not change
+		while(lastDateTime.getTime() == currentDateTime.getTime() && lastIndex > 0)
+		{	
+			entries.push(data[lastIndex]);
+			lastDateTime = currentDateTime;
+			lastIndex--;
+			currentDateTime = data[lastIndex].dateTime;
+		}
+		return entries;
+	}
 	useEffect( () => {
+		const lastEntries = getLastEntriesArray(data);
 		makeRows(14, 32);	// create grid for placing points of the heatmap
 		const heatmapInstance = h337.create({
 			// only container is required, the rest will be defaults
@@ -26,31 +45,33 @@ const Heatmap = ({data}) => {
 			maxOpacity: 5,
 			minOpacity: 4,
 			blur: .7,
+			useLocalExtrema: false
 		});
+
+		const points = [];	// empty array for heatmap points
+		const gridItemLength = 20;
 		
-
-		const points = [];
-
-		for (let i = 0; i < data.length; i++) {
+		for (let i = 0; i < lastEntries.length; i++) {
 			// represents the reading from a sensor
-			const entry = data[i];	
+			const entry = lastEntries[i];
 
 			// represents the div used for getting the position of the point
 			const cell = document.getElementById(`row-${entry.x} col-${entry.y}`);
-
+			console.log(entry);
 			const point = {
-				x: cell.offsetLeft + 20,
-				y: cell.offsetTop + 20,
-				value: entry.temperature,
-				radius:35
+				x: cell.offsetTop + gridItemLength,
+				y: cell.offsetLeft + gridItemLength,
+				value: entry.temp,
+				radius:40
 			};
 
 			points.push(point);
 		}
-
+		console.log(points);
 		// heatmap data format
 		const dataHeatmap = {
-			max: 5.6, // to change
+			min: 22,
+			max: 24, // to change
 			data: points,
 		};
 
