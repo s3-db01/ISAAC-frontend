@@ -135,6 +135,22 @@
     "temp": 25,
     "humidity": 47,
     "dateTime" : "November 29, 2021 08:10:00"
+  },
+  {
+    "id": 16,
+    "x": 11,
+    "y": 12,
+    "temp": 26,
+    "humidity": 47,
+    "dateTime" : "November 29, 2021 08:10:00"
+  },
+  {
+    "id": 17,
+    "x": 18,
+    "y": 13,
+    "temp": 26,
+    "humidity": 47,
+    "dateTime" : "November 29, 2021 08:10:00"
   }
 
 ]

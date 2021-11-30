@@ -35,9 +35,25 @@ const Heatmap = ({data}) => {
 		}
 		return entries;
 	}
+
+	function makeRows(rows, cols) {
+		const container = document.getElementsByClassName('grid-container')[0];
+
+		container.style.setProperty('--grid-rows', rows);
+		container.style.setProperty('--grid-cols', cols);
+
+		for (let rowIndex = 1; rowIndex <= rows; rowIndex++) {
+			for(let columnIndex = 1; columnIndex <= cols; columnIndex++) {
+				let cell = document.createElement('div');
+				cell.id = `row-${rowIndex} col-${columnIndex}`;
+				container.appendChild(cell).className = 'grid-item';
+			}
+		}
+	}
+
 	useEffect( () => {
-		const lastEntries = getLastEntriesArray(data);
 		makeRows(14, 32);	// create grid for placing points of the heatmap
+		const lastEntries = getLastEntriesArray(data);
 		const heatmapInstance = h337.create({
 			// only container is required, the rest will be defaults
 			container: document.querySelector('.heatmap-container'),
@@ -49,29 +65,33 @@ const Heatmap = ({data}) => {
 		});
 
 		const points = [];	// empty array for heatmap points
-		const gridItemLength = 20;
+		// could be changed, represents the length of square grid item
+		const gridItemLength = 20;	
 		
 		for (let i = 0; i < lastEntries.length; i++) {
 			// represents the reading from a sensor
 			const entry = lastEntries[i];
+			try {
+				// represents the div used for getting the position of the point
+				let cell = document.getElementById(`row-${entry.y} col-${entry.x}`);
+				console.log(cell);
+				const point = {
+					x:  cell.offsetLeft + gridItemLength,
+					y: cell.offsetTop + gridItemLength,
+					value: entry.temp,
+					radius:40
+				};
 
-			// represents the div used for getting the position of the point
-			const cell = document.getElementById(`row-${entry.x} col-${entry.y}`);
-			console.log(entry);
-			const point = {
-				x: cell.offsetTop + gridItemLength,
-				y: cell.offsetLeft + gridItemLength,
-				value: entry.temp,
-				radius:40
-			};
-
-			points.push(point);
+				points.push(point);
+			} catch (err) {
+				console.log(err);
+			}
 		}
-		console.log(points);
+		console.log(lastEntries);
 		// heatmap data format
 		const dataHeatmap = {
-			min: 22,
-			max: 24, // to change
+			min: 20,
+			max: 26, // to change
 			data: points,
 		};
 
@@ -94,22 +114,6 @@ const Heatmap = ({data}) => {
 			fontFamily: 'Rockwell',
 		},
 	});
-	
-
-	function makeRows(rows, cols) {
-		const container = document.getElementsByClassName('grid-container')[0];
-
-		container.style.setProperty('--grid-rows', rows);
-		container.style.setProperty('--grid-cols', cols);
-
-		for (let rowIndex = 1; rowIndex <= rows; rowIndex++) {
-			for(let columnIndex = 1; columnIndex <= cols; columnIndex++) {
-				let cell = document.createElement('div');
-				cell.id = `row-${rowIndex} col-${columnIndex}`;
-				container.appendChild(cell).className = 'grid-item';
-			}
-		}
-	}
 	
 	return (
 		<div>
