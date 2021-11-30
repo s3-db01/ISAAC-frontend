@@ -30,7 +30,7 @@ const Routes = () => {
 	return (
 		<Switch>
 			<Route path="/heatmap">
-				{/* <HeatmapGrid data={data}/> */}
+				<HeatmapGrid data={data}/>
 			</Route>
 			<Route path='/notifications'>
 				<Notifications />
