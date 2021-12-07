@@ -12,6 +12,7 @@ import '../index.css';
 const drawerWidth = 240;
 
 const Heatmap = ({data}) => {
+	console.log(data);
 	if (!data) {
 		return (
 			<div>Loading...</div>

@@ -21,6 +21,7 @@ const Routes = () => {
 	useEffect( async () => {
 		try {
 			const rawData = await serverFetch();
+			console.log(rawData);
 			setData(
 				await rawData.map((obj) => {
 					obj.dateTime = new Date(obj.dateTime);
