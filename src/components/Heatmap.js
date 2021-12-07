@@ -17,7 +17,7 @@ const Heatmap = ({data}) => {
 			<div>Loading...</div>
 		);
 	}
-	
+
 	// this method gets the last entries with the same dateTime
 	function getLastEntriesArray(data) {
 		let lastIndex = data.length - 1;
@@ -46,21 +46,27 @@ const Heatmap = ({data}) => {
 			for(let columnIndex = 1; columnIndex <= cols; columnIndex++) {
 				let cell = document.createElement('div');
 				cell.id = `row-${rowIndex} col-${columnIndex}`;
-				container.appendChild(cell).className = 'grid-item';
+				cell.className = 'grid-item no-point';
+				container.appendChild(cell);
 			}
 		}
 	}
-
-	useEffect( () => {
-		makeRows(14, 32);	// create grid for placing points of the heatmap
+	function getLastEntriesAverage(lastEntries) {
+		let average;
+		for(let index = 0; index < lastEntries.length; index++){
+			average += lastEntries[index];
+		}
+		average /= lastEntries.count;
+		return average;
+	}
+	function populateHeatmap() {
 		const lastEntries = getLastEntriesArray(data);
 		const heatmapInstance = h337.create({
 			// only container is required, the rest will be defaults
 			container: document.querySelector('.heatmap-container'),
-			radius: 20,
-			maxOpacity: 5,
-			minOpacity: 4,
-			blur: .7,
+			maxOpacity: 0.7,
+			minOpacity: 0.7,
+			blur: .6,
 			useLocalExtrema: false
 		});
 
@@ -74,12 +80,15 @@ const Heatmap = ({data}) => {
 			try {
 				// represents the div used for getting the position of the point
 				let cell = document.getElementById(`row-${entry.y} col-${entry.x}`);
-				console.log(cell);
+
+				cell.classList.remove('no-point');
+				cell.classList.add('point');
+
 				const point = {
-					x:  cell.offsetLeft + gridItemLength,
+					x: cell.offsetLeft + gridItemLength,
 					y: cell.offsetTop + gridItemLength,
 					value: entry.temp,
-					radius:40
+					radius:150
 				};
 
 				points.push(point);
@@ -88,6 +97,17 @@ const Heatmap = ({data}) => {
 			}
 		}
 		console.log(lastEntries);
+
+		// calculate the element automatically
+		let cell = document.getElementById('row-7 col-16');
+		points.push({
+			x: cell.offsetLeft + 20,
+			y: cell.offsetTop + 20,
+			value: getLastEntriesAverage(lastEntries),
+			radius:1200,
+			opacity: 0.1,
+		});
+
 		// heatmap data format
 		const dataHeatmap = {
 			min: 20,
@@ -98,6 +118,12 @@ const Heatmap = ({data}) => {
 		// if you have a set of datapoints always use setData instead of addData
 		// for data initialization
 		heatmapInstance.setData(dataHeatmap);
+		return heatmapInstance;
+	}
+
+	useEffect( () => {
+		makeRows(14, 32);	// create grid for placing points of the heatmap
+		populateHeatmap();
 	}, []);
 	
 
