@@ -156,6 +156,9 @@ const Heatmap = ({data}) => {
 					</Typography>
 				</Toolbar>
 			</AppBar>
+			<Typography variant="h4" noWrap component="div" theme={fontTheme} style={{marginLeft: 240}}>
+            Floor 13
+			</Typography>
 			<div className='heatmap-container'>
 				<div className='grid-container'></div>
 			</div>

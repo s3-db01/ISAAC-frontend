@@ -2,8 +2,9 @@
 import React, {useState, useEffect} from 'react';
 import Typography from '@mui/material/Typography';
 import GaugeChart from 'react-gauge-chart';
-import Paper from '@mui/material/Paper';
-
+// import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 // eslint-disable-next-line react/prop-types
 const Gauge = ({name, data}) => {
 	const [value, setValue] = useState(null);
@@ -53,37 +54,40 @@ const Gauge = ({name, data}) => {
 		);
 	}
 
-	const paperStyle = {
+	const cardStyle = {
 		height: 200,
-		width: 'auto',
+		width: 500,
 		textAlign: 'center',
 		paddingBottom: '250px',
 		margin: 'auto',
 	};
 
 	return (
-		<Paper
-			sx={paperStyle}
+		<Card
+			sx={cardStyle}
 		>
 			<Typography variant="h4" noWrap component="div"
 				sx={{fontFamily: 'Open Sans'}}>
 				{name}
 			</Typography>
-			<GaugeChart
-				style={chartStyle}
-				id="gauge-chart"
-				colors={['#009DDC', '#57C61A', '#c12d3f']}
-				arcWidth={0.2}
-				textColor="#black"
-				needleColor="#464A4F"
-				needleBaseColor="#464A4F"
-				percent={value}
-				arcsLength={getFormatArcLength()}
-				arcPadding={0.01}
-				formatTextValue={(val) => getFormatText(val)}
-			/>
-
-		</Paper>
+			<CardMedia
+				alt={`gauge for ${name}`}
+			>
+				<GaugeChart
+					style={chartStyle}
+					id="gauge-chart"
+					colors={['#009DDC', '#57C61A', '#c12d3f']}
+					arcWidth={0.2}
+					textColor="#black"
+					needleColor="#464A4F"
+					needleBaseColor="#464A4F"
+					percent={value}
+					arcsLength={getFormatArcLength()}
+					arcPadding={0.01}
+					formatTextValue={(val) => getFormatText(val)}
+				/>
+			</CardMedia>
+		</Card>
 	);
 };
 
