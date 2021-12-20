@@ -60,7 +60,7 @@ code {
   background-image: url("./images/iot-crop1.png");
   background-repeat: no-repeat;
   background-size: cover;
-  margin-left: 12%;
+  margin-left: minmax(0, 1fr);
   margin-right: 10%;
 }
 .grid-container {
