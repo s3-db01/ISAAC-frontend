@@ -160,11 +160,6 @@ const Heatmap = ({data}) => {
 			</Typography>
 			<div className='heatmap-container'>
 				<div className='grid-container'></div>
-
-			<div className='content'>
-				<div className='heatmap-container'>
-					<div className='grid-container'></div>
-				</div>
 			</div>
 		</div>
 	);
