@@ -7,7 +7,7 @@ import Dashboard from '../Dashboard';
 import HeatmapGrid from '../HeatmapGrid';
 import Heatmap from '../Heatmap';
 import Notifications from '../Notifications';
-import Advanced from '../Advanced';
+import Advanced from '../Advanced/Advanced';
 import Settings from '../Settings';
 import {serverFetch} from '../../utils/server-fetch';
 
@@ -21,7 +21,6 @@ const Routes = () => {
 	useEffect( async () => {
 		try {
 			const rawData = await serverFetch();
-			console.log(rawData);
 			setData(
 				await rawData.map((obj) => {
 					obj.dateTime = new Date(obj.dateTime);
@@ -44,7 +43,7 @@ const Routes = () => {
 				<Notifications />
 			</Route>
 			<Route path='/advanced'>
-				<Advanced />
+				<Advanced data={data}/>
 			</Route>
 			<Route path='/settings'>
 				<Settings />
