@@ -1,22 +1,3 @@
-@media only screen and (max-width: 1080px) {
-  .heatmap-container{
-    margin-left: 240px;
-    width: 100%;
-    height: 100%;
-  }
-}
-@media only screen and (min-width: 1081px) {
-  .heatmap-container{
-    margin-left: 240px;
-  }
-  .image{
-    /* margin-left: 240px;  */
-    width: 1280px;
-    height: 560px; 
-  }
-}
-
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -79,6 +60,8 @@ code {
   background-image: url("./images/iot-crop1.png");
   background-repeat: no-repeat;
   background-size: cover;
+  margin-left: minmax(0, 1fr);
+  margin-right: 10%;
 }
 .grid-container {
   display: grid;
@@ -90,7 +73,6 @@ code {
   /* repeat columns of the grid, where var(--grid-cols) represents the number
   of columns and 40px represents size of a cell*/
   grid-template-columns: repeat(var(--grid-cols), 40px);
-
   /* grid-template-columns: repeat(autofit, minmax(0, 1fr)); */
 }
 
@@ -99,3 +81,8 @@ code {
   width: 40px;
   height: 40px;
 }
+.content {
+  margin-left: 240px;
+  margin-right: 10%;
+}
+
