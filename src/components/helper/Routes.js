@@ -37,7 +37,7 @@ const Routes = () => {
 	return (
 		<Switch>
 			<Route path="/heatmap">
-				<HeatmapGrid data={data}/>
+				<Heatmap data={data}/>
 			</Route>
 			<Route path='/notifications'>
 				<Notifications />
@@ -47,9 +47,6 @@ const Routes = () => {
 			</Route>
 			<Route path='/settings'>
 				<Settings />
-			</Route>
-			<Route path='/heatmap-old'>
-				<Heatmap data={data}/>
 			</Route>
 			<Route path='/'>
 				<Dashboard data={data}/>
