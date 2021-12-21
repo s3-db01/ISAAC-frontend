@@ -7,14 +7,14 @@ on:
   pull_request:
     branches: [ main ]
 
-env: 
-  SKIP_PREFLIGHT_CHECK: true
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
     
+    env: 
+      SKIP_PREFLIGHT_CHECK: ${{ secrets.SKIP_PREFLIGHT_CHECK }}
 
     strategy:
       matrix:
