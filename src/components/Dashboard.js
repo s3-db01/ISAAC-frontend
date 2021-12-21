@@ -7,13 +7,15 @@ import Grid from '@mui/material/Grid';
 import DashboardGraphs from '../components/DashboardGraphs';
 import Box from '@material-ui/core/Box';
 import {createTheme} from '@material-ui/core/styles';
+import Loading from './Loading';
 
 const drawerWidth = 240;
 
 const Dashboard = ({data}) => {
-	if (!data) {
+
+	if (data.length === 0) {
 		return (
-			<div>...Loading</div>
+			<Loading/>
 		);
 	}
 

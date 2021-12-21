@@ -5,16 +5,16 @@ import Typography from '@mui/material/Typography';
 import {createTheme} from '@material-ui/core/styles';
 import HeatmapGrid from './HeatmapGrid';
 import h337 from 'heatmap.js';
-
+import Loading from './Loading';
 import '../index.css';
 
 
 const drawerWidth = 240;
 
 const Heatmap = ({data}) => {
-	if (!data) {
+	if (data.length === 0) {
 		return (
-			<div>Loading...</div>
+			<Loading/>
 		);
 	}
 

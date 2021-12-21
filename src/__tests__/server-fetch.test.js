@@ -74,15 +74,4 @@ describe('server fetching tests', () => {
 		});
 		expect(fetch).toHaveBeenCalledTimes(1);
 	});
-
-
-	it('exception handling', async () => {
-		fetch.mockImplementationOnce(() =>
-			Promise.reject(new Error('Failed to fetch')),
-		);
-		const rawData = await serverFetch();
-
-		expect(rawData.message).toEqual('Failed to fetch');
-		expect(fetch).toHaveBeenCalledTimes(1);
-	});
 });

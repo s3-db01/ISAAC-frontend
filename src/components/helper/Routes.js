@@ -10,6 +10,7 @@ import Notifications from '../Notifications';
 import Advanced from '../Advanced';
 import Settings from '../Settings';
 import {serverFetch} from '../../utils/server-fetch';
+import Loading from '../Loading';
 
 import {
 	Switch,
@@ -17,12 +18,13 @@ import {
 } from 'react-router-dom';
 
 const Routes = () => {
-	const [data, setData] = React.useState(null);
+	const [data, setData] = React.useState([]);
 	useEffect( async () => {
 		try {
 			const rawData = await serverFetch();
+
 			setData(
-				await rawData.map((obj) => {
+				rawData.map((obj) => {
 					obj.dateTime = new Date(obj.dateTime);
 					return obj;
 				}));
@@ -32,7 +34,6 @@ const Routes = () => {
 		}
 	}, []);
 
-	// if (!data) return <div>Loading...</div>;
 
 	return (
 		<Switch>
