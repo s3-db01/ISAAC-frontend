@@ -18,21 +18,36 @@ import {
 
 const Routes = () => {
 	const [data, setData] = React.useState(null);
+	const [iotFilter, setIotFilter] = React.useState(new Set());
+	// const iotFilter = new Set();
+
 	useEffect( async () => {
 		try {
-			const rawData = await serverFetch();
+			const rawData = await serverFetch(iotFilter, setIotFilter);
 			setData(
-				await rawData.map((obj) => {
+				rawData.map((obj) => {
 					obj.dateTime = new Date(obj.dateTime);
 					return obj;
+					
 				}));
 		}
 		catch (error) {
 			console.log(error);
 		}
-	}, []);
+	}, [iotFilter]);
 
-	// if (!data) return <div>Loading...</div>;
+	const iotFilterHandler = (iot) => {
+		let valueKey = `${iot.x}-${iot.y}`;
+		const newIotFilter = new Set(iotFilter);
+		if (iotFilter.has(valueKey) || localStorage.getItem(`${iot.x}-${iot.y}`)) {
+			newIotFilter.delete(valueKey);
+			localStorage.removeItem(`${iot.x}-${iot.y}`);
+		} else {
+			newIotFilter.add(`${iot.x}-${iot.y}`);
+			localStorage.setItem(`${iot.x}-${iot.y}`, true);
+		}
+		setIotFilter(newIotFilter);
+	};
 
 	return (
 		<Switch>
@@ -43,7 +58,7 @@ const Routes = () => {
 				<Notifications />
 			</Route>
 			<Route path='/advanced'>
-				<Advanced data={data}/>
+				<Advanced data={data} iotFilterHandler={(iot) => iotFilterHandler(iot)}/>
 			</Route>
 			<Route path='/settings'>
 				<Settings />

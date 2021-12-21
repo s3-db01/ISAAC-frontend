@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,7 +7,15 @@ import {Switch} from '@material-ui/core';
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 
-const IndividualModule = ({drawerWidth, iotModule}) => {
+const IndividualModule = ({iotModule, iotFilterHandler, currentState}) => {
+	const [iotModuleFiltered, setIotModuleFiltered] = useState(currentState);
+
+	const switchIotHandler = (event) => {
+		const newState = !iotModuleFiltered;
+		setIotModuleFiltered(newState);
+		iotFilterHandler(iotModule);
+
+	};
 	return (
 		<div>
 			<Card raised={true}>
@@ -24,7 +32,11 @@ const IndividualModule = ({drawerWidth, iotModule}) => {
 					<Typography sx={{ fontSize: 20 }} variant="h4" color="text.secondary" component="div" gutterBottom>
        Last reading: {iotModule.date}
 					</Typography>
-					<Switch {...label} defaultChecked />
+					<Switch {...label} 
+						onChange={(e) => switchIotHandler(e)}
+						checked={iotModuleFiltered}
+						value={iotModuleFiltered}
+					/>
 				</CardContent>
 			</Card>
 		</div>

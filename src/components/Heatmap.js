@@ -96,7 +96,6 @@ const Heatmap = ({data}) => {
 				console.log(err);
 			}
 		}
-		console.log(lastEntries);
 
 		// calculate the element automatically
 		let cell = document.getElementById('row-7 col-16');

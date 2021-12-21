@@ -54,15 +54,15 @@ const latestReadingIotModules = [
 		date: '11/19/2021',
 	},
 	{
-		x: 15,
-		y: 12,
+		x: 11,
+		y: 4,
 		temperature: 25,
 		humidity: 33,
 		date: '11/19/2021',
 	}
 ];
 
-const Advanced = ({data}) => {
+const Advanced = ({data, iotFilterHandler}) => {
 	const advancedStyle = {
 		width: `calc(100% - ${drawerWidth}px)`,
 		height: 100,
@@ -92,7 +92,10 @@ const Advanced = ({data}) => {
 				{latestReadingIotModules.map((iotModule, i) => {
 					return (
 						<Grid item xs={4} key={i}>
-							<IndividualModule drawerWidth={drawerWidth} iotModule={iotModule} />
+							<IndividualModule 
+								iotModule={iotModule} iotFilterHandler={(iot) => iotFilterHandler(iot)}
+								currentState={!localStorage.getItem(`${iotModule.x}-${iotModule.y}`)}
+							/>
 						</Grid>
 					);
 				})}
