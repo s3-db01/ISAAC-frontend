@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import {createTheme} from '@material-ui/core/styles';
 import HeatmapGrid from './HeatmapGrid';
 import h337 from 'heatmap.js';
-import iotCrop from '../images/iot-crop1.png';
 
 import '../index.css';
 
@@ -18,71 +17,116 @@ const Heatmap = ({data}) => {
 			<div>Loading...</div>
 		);
 	}
-	useEffect( () => {
+
+	// this method gets the last entries with the same dateTime
+	function getLastEntriesArray(data) {
+		let lastIndex = data.length - 1;
+		let lastDateTime = data[lastIndex].dateTime;
+		let currentDateTime = data[lastIndex].dateTime; 
+		const entries = [];
+	
+		// the loop runs in reversed order while the currentDateTime value does not change
+		while(lastDateTime.getTime() == currentDateTime.getTime() && lastIndex > 0)
+		{	
+			entries.push(data[lastIndex]);
+			lastDateTime = currentDateTime;
+			lastIndex--;
+			currentDateTime = data[lastIndex].dateTime;
+		}
+		return entries;
+	}
+
+	function makeRows(rows, cols) {
+		const container = document.getElementsByClassName('grid-container')[0];
+
+		container.style.setProperty('--grid-rows', rows);
+		container.style.setProperty('--grid-cols', cols);
+
+		for (let rowIndex = 1; rowIndex <= rows; rowIndex++) {
+			for(let columnIndex = 1; columnIndex <= cols; columnIndex++) {
+				let cell = document.createElement('div');
+				cell.id = `row-${rowIndex} col-${columnIndex}`;
+				cell.className = 'grid-item no-point';
+				container.appendChild(cell);
+			}
+		}
+	}
+	function getLastEntriesAverage(lastEntries) {
+		let average;
+		for(let index = 0; index < lastEntries.length; index++){
+			average += lastEntries[index];
+		}
+		average /= lastEntries.count;
+		return average;
+	}
+	function populateHeatmap() {
+		const lastEntries = getLastEntriesArray(data);
 		const heatmapInstance = h337.create({
 			// only container is required, the rest will be defaults
 			container: document.querySelector('.heatmap-container'),
+			maxOpacity: 0.7,
+			minOpacity: 0.7,
+			blur: .6,
+			useLocalExtrema: false
 		});
-		const points = [];
-		for (let i = 0; i < data.length; i++) {
-			const element = data[i];
-			const point = {
-				x: element.x * 40 - 20,
-				y: element.y * 40 - 20,
-				value: element.temp,
-			};
 
-			const leftPoint = {
-				x: (element.x - 0.3) * 40 - 20,
-				y: element.y * 40 - 20,
-				value: element.temp,
-			};
+		const points = [];	// empty array for heatmap points
+		// could be changed, represents the length of square grid item
+		const gridItemLength = 20;	
+		
+		for (let i = 0; i < lastEntries.length; i++) {
+			// represents the reading from a sensor
+			const entry = lastEntries[i];
+			try {
+				// represents the div used for getting the position of the point
+				let cell = document.getElementById(`row-${entry.y} col-${entry.x}`);
 
-			const rightPoint = {
-				x: (element.x + 0.3) * 40 - 20,
-				y: element.y * 40 - 20,
-				value: element.temp,
-			};
+				cell.classList.remove('no-point');
+				cell.classList.add('point');
 
-			const upPoint = {
-				x: element.x * 40 - 20,
-				y: (element.y + 0.3) * 40 - 20,
-				value: element.temp,
-			};
+				const point = {
+					x: cell.offsetLeft + gridItemLength,
+					y: cell.offsetTop + gridItemLength,
+					value: entry.temp,
+					radius:150
+				};
 
-			const downPoint = {
-				x: element.x * 40 - 20,
-				y: (element.y - 0.3) * 40 - 20,
-				value: element.temp,
-			};
-
-			points.push(point);
-			points.push(leftPoint);
-			// points.push(rightPoint);
-			// points.push(upPoint);
-			points.push(downPoint);
-
+				points.push(point);
+			} catch (err) {
+				console.log(err);
+			}
 		}
-		var nuConfig = {
-			radius: 10,
-			maxOpacity: 1,
-			minOpacity: 0.5,
-			blur: .9,
-		};
-		heatmapInstance.configure(nuConfig);
-		console.log(points);
+		console.log(lastEntries);
+
+		// calculate the element automatically
+		let cell = document.getElementById('row-7 col-16');
+		points.push({
+			x: cell.offsetLeft + 20,
+			y: cell.offsetTop + 20,
+			value: getLastEntriesAverage(lastEntries),
+			radius:1200,
+			opacity: 0.1,
+		});
 
 		// heatmap data format
 		const dataHeatmap = {
-			max: 27, // to change
+			min: 20,
+			max: 26, // to change
 			data: points,
 		};
 
 		// if you have a set of datapoints always use setData instead of addData
 		// for data initialization
-		// console.log(dataHeatmap);
 		heatmapInstance.setData(dataHeatmap);
+		return heatmapInstance;
+	}
+
+	useEffect( () => {
+		makeRows(14, 32);	// create grid for placing points of the heatmap
+		populateHeatmap();
 	}, []);
+	
+
 
 	const heatmapStyle = {
 		width: `calc(100% - ${drawerWidth}px)`,
@@ -96,6 +140,7 @@ const Heatmap = ({data}) => {
 			fontFamily: 'Rockwell',
 		},
 	});
+	
 	return (
 		<div>
 			<AppBar
@@ -110,14 +155,11 @@ const Heatmap = ({data}) => {
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<div className='heatmap-container'>
-				<div style={mainContentStyle}>
-					<img src={iotCrop} className="image"/>
+			<div className='content'>
+				<div className='heatmap-container'>
+					<div className='grid-container'></div>
 				</div>
 			</div>
-			{/* <HeatmapGrid/> */}
-			
-
 		</div>
 	);
 };

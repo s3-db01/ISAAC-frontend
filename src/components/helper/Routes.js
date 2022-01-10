@@ -5,6 +5,7 @@ import React, {
 
 import Dashboard from '../Dashboard';
 import HeatmapGrid from '../HeatmapGrid';
+import Heatmap from '../Heatmap';
 import Notifications from '../Notifications';
 import Advanced from '../Advanced';
 import Settings from '../Settings';
@@ -30,7 +31,7 @@ const Routes = () => {
 	return (
 		<Switch>
 			<Route path="/heatmap">
-				<HeatmapGrid data={data}/>
+				<Heatmap data={data}/>
 			</Route>
 			<Route path='/notifications'>
 				<Notifications />

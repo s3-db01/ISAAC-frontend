@@ -209,7 +209,10 @@ const DashboardGraphs = ({data}) => {
 	const btnStyle = {
 		fontFamily: 'Open Sans',
 		textTransform: 'none',
+		fontWeight: 'bold',
 		marginTop: 10,
+		radius: 0.1,
+		borderRadius: 10
 	};
 
 	return (
