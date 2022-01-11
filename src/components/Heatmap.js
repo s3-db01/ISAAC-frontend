@@ -87,7 +87,7 @@ const Heatmap = ({data}) => {
 				const point = {
 					x: cell.offsetLeft + gridItemLength,
 					y: cell.offsetTop + gridItemLength,
-					value: entry.temp,
+					value: entry.temperature,
 					radius:150
 				};
 
