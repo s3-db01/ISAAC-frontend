@@ -93,7 +93,7 @@ const Heatmap = ({data}) => {
 
 				points.push(point);
 			} catch (err) {
-				console.log(err);
+				console.error(err);
 			}
 		}
 

@@ -19,7 +19,6 @@ import {
 const Routes = () => {
 	const [data, setData] = React.useState(null);
 	const [iotFilter, setIotFilter] = React.useState(new Set());
-	// const iotFilter = new Set();
 
 	useEffect( async () => {
 		try {
@@ -32,7 +31,7 @@ const Routes = () => {
 				}));
 		}
 		catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	}, [iotFilter]);
 
