@@ -40,7 +40,7 @@ export function getMeasurementArray(date, data, measurement) {
 				counter[arrayIndex]++;
 
 				if (element.temperature > entries[arrayIndex].maximum) {
-					entries[arrayIndex].maximum = element.temp;
+					entries[arrayIndex].maximum = element.temperature;
 				}
 				if (element.temperature < entries[arrayIndex].minimum) {
 					entries[arrayIndex].minimum = element.temperature;

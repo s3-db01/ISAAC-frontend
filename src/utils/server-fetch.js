@@ -11,7 +11,8 @@ export const serverFetch = async () => {
 };
 
 export const serverFetchWithFiltering = async (iotFilter, setIotFilter) => {
-	const res = await axios.get('http://localhost:5001/entries');
+	// const res = await axios.get('http://localhost:5001/entries');
+	const res = await axios.get(baseUrl + '/api/sensorlogs/complete');
 	const data = res.data;
 	if (!data) return [];
 	loadIotLocalFilters(data, iotFilter, setIotFilter);
@@ -19,7 +20,7 @@ export const serverFetchWithFiltering = async (iotFilter, setIotFilter) => {
 };
 
 export const getLatestReadings = async () => {
-	const res = await axios.get(baseUrl + '/sensorlogs/complete');
+	const res = await axios.get(baseUrl + '/api/sensorlogs/complete');
 	return res.data;
 };
 

@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Advanced = ({data, iotFilterHandler}) => {
 	const [latestReadings, setLatestReadings] = useState(null);
+	const classes = useStyles();
 
 	useEffect(async () => {
 		const readings = await getLatestReadings();
@@ -84,7 +85,7 @@ const Advanced = ({data, iotFilterHandler}) => {
 			fontFamily: 'Rockwell',
 		},
 	});
-	const classes = useStyles();
+	
 	return (
 		<div style={{marginLeft: `${drawerWidth}px`}}>
 			<AppBar
