@@ -54,18 +54,4 @@ describe('server fetching tests', () => {
 		expect(rawData).toEqual(data);
 		expect(axios.get).toHaveBeenCalledTimes(1);
 	});
-
-	it('exception handling', async () => {
-		// mocking the function axios.get
-		axios.get.mockImplementation(() => 
-			Promise.reject(new Error('Failed to fetch')),
-		);
-
-		// calling the function to be tested
-		const rawData = await serverFetch();
-
-		//expect statements
-		expect(rawData).toEqual('Failed to fetch');
-		expect(axios.get).toHaveBeenCalledTimes(1);
-	});
 });
