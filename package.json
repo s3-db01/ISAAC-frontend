@@ -41,12 +41,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3005 react-scripts start",
     "build": "react-scripts build",
     "test": "jest --runInBand --config=jest.config.json",
     "ciTest": "jest --ci --runInBand --config=jest.config.json",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 5000"
+    "server": "json-server --watch db.json --port 5001"
   },
   "eslintConfig": {
     "extends": [

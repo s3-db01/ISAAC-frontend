@@ -39,18 +39,6 @@ const Dashboard = ({data}) => {
 		},
 	});
 
-	// const arcCenterRenderer = (value, color) => {
-	//   return (
-	//     <h3
-	//       style={{
-	//         color: color,
-	//       }}
-	//     >
-	//       {value}%
-	//     </h3>
-	//   );
-	// };
-
 	return (
 		<div style={generalStyle}>
 			<AppBar
