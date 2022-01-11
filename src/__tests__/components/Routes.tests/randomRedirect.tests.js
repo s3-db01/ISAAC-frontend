@@ -7,16 +7,16 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { mount } from 'enzyme';
 import Routes from '../../../components/helper/Routes';
+import {act} from 'react-dom/test-utils';
 
 import Dashboard from '../../../components/Dashboard';
 import Heatmap from '../../../components/Heatmap';
 import Notifications from '../../../components/Notifications';
 import Advanced from '../../../components/Advanced';
 import Settings from '../../../components/Settings';
+  
 
-jest.mock('');
-
-test('rendering the routes', () => {
+test('rendering the routes', async () => {
 	// mounting the component inside the wrapper
 	// providing initial entry as '/asd' replicates the user accessing /asd route*
 	const wrapper = mount(
@@ -25,7 +25,7 @@ test('rendering the routes', () => {
 		</MemoryRouter>
 	);
 	
-	// exepct statements
+	// expect statements
 	// this is the only component expected to be rendered, since asd is unknown
 	// the user will be redirected to Dashboard
 	expect(wrapper.find(Dashboard)).toHaveLength(1);
@@ -33,5 +33,4 @@ test('rendering the routes', () => {
 	expect(wrapper.find(Notifications)).toHaveLength(0);
 	expect(wrapper.find(Advanced)).toHaveLength(0);
 	expect(wrapper.find(Settings)).toHaveLength(0); 
-	
 });
