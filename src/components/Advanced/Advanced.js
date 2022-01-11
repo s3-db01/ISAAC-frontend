@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -7,6 +7,7 @@ import IndividualModule from './IndividualModule';
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid} from '@mui/material';
 import FloorSelector from './FloorSelector';
+import { getLatestReadings } from '../../utils/server-fetch';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -17,52 +18,63 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const latestReadingIotModules = [
-	{
-		x: 4,
-		y: 3,
-		temperature: 24.5,
-		humidity: 31.5,
-		date: '12/20/2021',
-	},
-	{
-		x: 12,
-		y: 20,
-		temperature: 21,
-		humidity: 40,
-		date: '11/19/2021',
-	},
-	{
-		x: 15,
-		y: 12,
-		temperature: 25,
-		humidity: 33,
-		date: '11/19/2021',
-	},
-	{
-		x: 15,
-		y: 12,
-		temperature: 25,
-		humidity: 33,
-		date: '11/19/2021',
-	},
-	{
-		x: 15,
-		y: 12,
-		temperature: 25,
-		humidity: 33,
-		date: '11/19/2021',
-	},
-	{
-		x: 11,
-		y: 4,
-		temperature: 25,
-		humidity: 33,
-		date: '11/19/2021',
-	}
-];
+// const latestReadingIotModules = [
+// 	{
+// 		x: 4,
+// 		y: 3,
+// 		temperature: 24.5,
+// 		humidity: 31.5,
+// 		date: '12/20/2021',
+// 	},
+// 	{
+// 		x: 12,
+// 		y: 20,
+// 		temperature: 21,
+// 		humidity: 40,
+// 		date: '11/19/2021',
+// 	},
+// 	{
+// 		x: 15,
+// 		y: 12,
+// 		temperature: 25,
+// 		humidity: 33,
+// 		date: '11/19/2021',
+// 	},
+// 	{
+// 		x: 15,
+// 		y: 12,
+// 		temperature: 25,
+// 		humidity: 33,
+// 		date: '11/19/2021',
+// 	},
+// 	{
+// 		x: 15,
+// 		y: 12,
+// 		temperature: 25,
+// 		humidity: 33,
+// 		date: '11/19/2021',
+// 	},
+// 	{
+// 		x: 11,
+// 		y: 4,
+// 		temperature: 25,
+// 		humidity: 33,
+// 		date: '11/19/2021',
+// 	}
+// ];
 
 const Advanced = ({data, iotFilterHandler}) => {
+	const [latestReadings, setLatestReadings] = useState(null);
+
+	useEffect(async () => {
+		const readings = await getLatestReadings();
+		setLatestReadings(readings);
+	}, []);
+
+	if (!latestReadings) {
+		return <div>Loading../</div>;
+	}
+
 	const advancedStyle = {
 		width: `calc(100% - ${drawerWidth}px)`,
 		height: 100,
@@ -89,7 +101,7 @@ const Advanced = ({data, iotFilterHandler}) => {
 			</AppBar>
 			<FloorSelector />
 			<Grid container spacing={0.2} className={classes.root}>
-				{latestReadingIotModules.map((iotModule, i) => {
+				{latestReadings.map((iotModule, i) => {
 					return (
 						<Grid item xs={4} key={i}>
 							<IndividualModule 
