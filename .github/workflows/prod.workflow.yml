@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env: 
-      SKIP_PREFLIGHT_CHECK: true
+      SKIP_PREFLIGHT_CHECK: true 
 
     strategy:
       matrix:

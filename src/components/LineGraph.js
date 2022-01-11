@@ -2,9 +2,9 @@ import React, {useRef, forwardRef, useImperativeHandle} from 'react';
 import PropTypes from 'prop-types';
 import {Line} from 'react-chartjs-2';
 
-const Graph = forwardRef((props, ref) => {
-	const graphRef = useRef(null);
-	useImperativeHandle(ref, () => ({
+const LineGraph = React.forwardRef((props, ref) => {
+	const graphRef = React.useRef(null);
+	React.useImperativeHandle(ref, () => ({
 		updateGraph() {
 			graphRef.current.update();
 		},
@@ -47,15 +47,15 @@ const Graph = forwardRef((props, ref) => {
 	);
 });
 
-Graph.propTypes = {
+LineGraph.propTypes = {
 	data: PropTypes.object.isRequired,
 };
-Graph.propTypes = {
+LineGraph.propTypes = {
 	height: PropTypes.number.isRequired,
 };
-Graph.propTypes = {
+LineGraph.propTypes = {
 	title: PropTypes.string.isRequired,
 };
-Graph.displayName = 'Graph';
-export default Graph;
+LineGraph.displayName = 'LineGraph';
+export default LineGraph;
 
