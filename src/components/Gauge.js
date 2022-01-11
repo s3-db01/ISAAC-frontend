@@ -17,7 +17,7 @@ const Gauge = ({name, data}) => {
 	useEffect(async () => {
 		if (name === 'Temperature') {
 			data = data.map((obj) =>
-				obj.temp,
+				obj.temperature,
 			);
 			const average = await data.reduce((total, next) => total +
       next, 0) / data.length;
@@ -37,7 +37,7 @@ const Gauge = ({name, data}) => {
 		if (name === 'Temperature') {
 			return Math.round((val/6.67+14))+'°C';
 		}
-		return Math.round(val)+'%';
+		return val+'%';
 	};
 
 	const getFormatArcLength = () => {
