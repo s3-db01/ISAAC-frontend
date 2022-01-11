@@ -93,10 +93,9 @@ const Heatmap = ({data}) => {
 
 				points.push(point);
 			} catch (err) {
-				console.log(err);
+				console.error(err);
 			}
 		}
-		console.log(lastEntries);
 
 		// calculate the element automatically
 		let cell = document.getElementById('row-7 col-16');
@@ -155,10 +154,11 @@ const Heatmap = ({data}) => {
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<div className='content'>
-				<div className='heatmap-container'>
-					<div className='grid-container'></div>
-				</div>
+			<Typography variant="h4" noWrap component="div" theme={fontTheme} style={{marginLeft: 240}}>
+            Floor 13
+			</Typography>
+			<div className='heatmap-container'>
+				<div className='grid-container'></div>
 			</div>
 		</div>
 	);
