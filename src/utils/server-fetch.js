@@ -19,7 +19,7 @@ export const serverFetchWithFiltering = async (iotFilter, setIotFilter) => {
 };
 
 export const getLatestReadings = async () => {
-	const res = await axios.get(baseUrl + '/sensorlogs/complete');
+	const res = await axios.get(baseUrl + '/api/sensorlogs/complete');
 	return res.data;
 };
 
