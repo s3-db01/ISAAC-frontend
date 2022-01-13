@@ -32,7 +32,8 @@ const Routes = () => {
 			const rawData = await serverFetchWithFiltering(iotFilter, setIotFilter);
 			setData(
 				rawData.map((obj) => {
-					obj.dateTime = new Date(obj.dateTime);
+					obj.dateTime = new Date(obj.updatedAt);
+					console.log(obj);
 					return obj;
 					
 				}));
