@@ -10,6 +10,8 @@ import Notifications from '../Notifications';
 import Advanced from '../Advanced';
 import Settings from '../Settings';
 import {serverFetch} from '../../utils/server-fetch';
+import Logout from '../Logout';
+import Profile from '../Profile';
 
 import {
 	Switch,
@@ -46,7 +48,7 @@ const Routes = () => {
 				<Advanced />
 			</Route>
 			<Route path='/settings'>
-				<Settings />
+				<Profile />
 			</Route>
 			<Route path='/'>
 				<Dashboard data={data}/>
