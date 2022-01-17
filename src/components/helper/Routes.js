@@ -13,7 +13,6 @@ import {
 	Route,
 } from 'react-router-dom';
 
-import axios from 'axios';
 
 const Routes = () => {
 	const [data, setData] = React.useState([]);
