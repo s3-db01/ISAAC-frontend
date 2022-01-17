@@ -7,7 +7,7 @@ import HeatmapGrid from './HeatmapGrid';
 import h337 from 'heatmap.js';
 import Loading from './Loading';
 import '../index.css';
-
+import FloorSelector from './Advanced/FloorSelector';
 
 const drawerWidth = 240;
 
@@ -38,7 +38,6 @@ const Heatmap = ({data}) => {
 
 	function makeRows(rows, cols) {
 		const container = document.getElementsByClassName('grid-container')[0];
-
 		container.style.setProperty('--grid-rows', rows);
 		container.style.setProperty('--grid-cols', cols);
 
@@ -154,9 +153,9 @@ const Heatmap = ({data}) => {
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<Typography variant="h4" noWrap component="div" theme={fontTheme} style={{marginLeft: 240}}>
-            Floor 13
-			</Typography>
+			<div style={{marginLeft: `${drawerWidth}px`}}>
+				<FloorSelector  />
+			</div>
 			<div className='heatmap-container'>
 				<div className='grid-container'></div>
 			</div>

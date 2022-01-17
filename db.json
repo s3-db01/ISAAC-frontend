@@ -313,6 +313,31 @@
     "temperature": 23,
     "humidity": 47,
     "dateTime" : "December 07, 2021 08:10:00"
+  },
+
+  {
+    "id": 35,
+    "x": 30,
+    "y": 1,
+    "temperature": 24,
+    "humidity": 47,
+    "dateTime" : "January 10, 2022 08:10:00"
+  },
+  {
+    "id": 36,
+    "x": 30,
+    "y": 7,
+    "temperature": 22.4,
+    "humidity": 47,
+    "dateTime" : "January 11, 2022 08:10:00"
+  },
+  {
+    "id": 36,
+    "x": 31,
+    "y": 13,
+    "temperature": 23,
+    "humidity": 47,
+    "dateTime" : "January 12, 2022 08:10:00"
   }
 
 ]

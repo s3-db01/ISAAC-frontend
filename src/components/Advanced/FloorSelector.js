@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {FormControl, InputLabel, Select, MenuItem} from '@mui/material';
 
 const FloorSelector = () => {
-	const [floor, setFloor] = useState(3);
+	const [floor, setFloor] = useState(13);
 
 	const handleChange = (event) => {
 		setFloor(event.target.value);
@@ -19,7 +19,7 @@ const FloorSelector = () => {
 					label="Floor"
 					onChange={handleChange}
 				>
-					<MenuItem value={3}>3</MenuItem>
+					<MenuItem value={13}>13</MenuItem>
 				</Select>
 			</FormControl>
 		</div>

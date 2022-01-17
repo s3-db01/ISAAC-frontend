@@ -11,7 +11,7 @@ import Routes from '../../../components/helper/Routes';
 import Dashboard from '../../../components/Dashboard';
 import Heatmap from '../../../components/Heatmap';
 import Notifications from '../../../components/Notifications';
-import Advanced from '../../../components/Advanced';
+import Advanced from '../../../components/Advanced/Advanced';
 import Settings from '../../../components/Settings';
 
 jest.mock('');
