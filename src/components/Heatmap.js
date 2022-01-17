@@ -2,13 +2,12 @@ import React, {useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import {createTheme} from '@material-ui/core/styles';
 import h337 from 'heatmap.js';
 import Loading from './Loading';
-import '../index.css';
+import {drawerWidth, mainContentStyle, heatmapStyle, fontTheme} from './styles/heatmapStyle';
 import FloorSelector from './Advanced/FloorSelector';
 
-const drawerWidth = 240;
+
 
 const Heatmap = ({data}) => {
 	if (data.length === 0) {
@@ -16,25 +15,7 @@ const Heatmap = ({data}) => {
 			<Loading/>
 		);
 	}
-
-	// this method gets the last entries with the same dateTime
-	function getLastEntriesArray(data) {
-		let lastIndex = data.length - 1;
-		let lastDateTime = data[lastIndex].dateTime;
-		let currentDateTime = data[lastIndex].dateTime; 
-		const entries = [];
 	
-		// the loop runs in reversed order while the currentDateTime value does not change
-		while(lastDateTime.getTime() == currentDateTime.getTime() && lastIndex > 0)
-		{	
-			entries.push(data[lastIndex]);
-			lastDateTime = currentDateTime;
-			lastIndex--;
-			currentDateTime = data[lastIndex].dateTime;
-		}
-		return entries;
-	}
-
 	function makeRows(rows, cols) {
 		const container = document.getElementsByClassName('grid-container')[0];
 		container.style.setProperty('--grid-rows', rows);
@@ -58,7 +39,7 @@ const Heatmap = ({data}) => {
 		return average;
 	}
 	function populateHeatmap() {
-		const lastEntries = getLastEntriesArray(data);
+		const lastEntries = data;
 		const heatmapInstance = h337.create({
 			// only container is required, the rest will be defaults
 			container: document.querySelector('.heatmap-container'),
@@ -125,18 +106,7 @@ const Heatmap = ({data}) => {
 	
 
 
-	const heatmapStyle = {
-		width: `calc(100% - ${drawerWidth}px)`,
-		height: 100,
-	};
-	const mainContentStyle = {
-		marginLeft: {drawerWidth},
-	};
-	const fontTheme = createTheme({
-		typography: {
-			fontFamily: 'Rockwell',
-		},
-	});
+	
 	
 	return (
 		<div>
@@ -154,10 +124,12 @@ const Heatmap = ({data}) => {
 			</AppBar>
 			<div style={{marginLeft: `${drawerWidth}px`}}>
 				<FloorSelector  />
+			
+				<div className='heatmap-container' >
+					<div className='grid-container'></div>
+				</div>
 			</div>
-			<div className='heatmap-container'>
-				<div className='grid-container'></div>
-			</div>
+			
 		</div>
 	);
 };

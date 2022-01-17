@@ -20,18 +20,6 @@ export const serverFetchWithFiltering = async (iotFilter, setIotFilter) => {
 	return handleData(availableData);
 };
 
-// export const serverFetchWithFilteringWeeklyData = async (iotFilter, setIotFilter) => {
-// 	const res = await axios.get('http://localhost:5001/entries');
-// 	console.log(res);
-// 	// const res = await axios.get(baseUrl + '/api/sensorlogs/complete/weekly');
-// 	const data = res.data;
-// 	if (!data) return [];
-// 	loadIotLocalFilters(data, iotFilter, setIotFilter);
-// 	const availableData = getAllAvailableIot(data, iotFilter);
-// 	console.log(availableData );
-// 	return handleData(availableData);
-// };
-
 export const getLatestReadings = async () => {
 	const res = await axios.get(baseUrl + '/api/sensorlogs/complete');
 	// const res = await axios.get('http://localhost:5001/entries');
