@@ -1,19 +1,13 @@
-/* eslint-disable react/prop-types */
 import React, {useState, useEffect} from 'react';
 import Typography from '@mui/material/Typography';
 import GaugeChart from 'react-gauge-chart';
-// import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-// eslint-disable-next-line react/prop-types
+
+import gaugeStyle from './styles/gaugeStyle';
+
 const Gauge = ({name, data}) => {
 	const [value, setValue] = useState(null);
-
-	const chartStyle = {
-		height: 400,
-		width: 500,
-		fontFamily: 'Open Sans',
-	};
 
 	useEffect(async () => {
 		if (name === 'Temperature') {
@@ -74,7 +68,7 @@ const Gauge = ({name, data}) => {
 				alt={`gauge for ${name}`}
 			>
 				<GaugeChart
-					style={chartStyle}
+					style={gaugeStyle.chartStyle}
 					id="gauge-chart"
 					colors={['#009DDC', '#57C61A', '#c12d3f']}
 					arcWidth={0.2}

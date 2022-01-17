@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {createTheme} from '@material-ui/core/styles';
-import HeatmapGrid from './HeatmapGrid';
 import h337 from 'heatmap.js';
 import Loading from './Loading';
 import '../index.css';
