@@ -57,7 +57,8 @@ code {
   position: relative;
   width: 1280px;
   height: 560px;
-  background-image: url("./images/iot-crop1.png");
+  /* background-image: url("./images/iot-crop1.png"); */
+  background-image: url("./images/derde-verdieping.svg");
   background-repeat: no-repeat;
   background-size: cover;
   margin-left: minmax(0, 1fr);

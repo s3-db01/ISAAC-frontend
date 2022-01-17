@@ -1,23 +1,18 @@
-/* eslint-disable react/prop-types */
 import React, {useState, useEffect} from 'react';
 import Typography from '@mui/material/Typography';
 import GaugeChart from 'react-gauge-chart';
-import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 
-// eslint-disable-next-line react/prop-types
+import gaugeStyle from './styles/gaugeStyle';
+
 const Gauge = ({name, data}) => {
 	const [value, setValue] = useState(null);
-
-	const chartStyle = {
-		height: 400,
-		width: 500,
-		fontFamily: 'Open Sans',
-	};
 
 	useEffect(async () => {
 		if (name === 'Temperature') {
 			data = data.map((obj) =>
-				obj.temp,
+				obj.temperature,
 			);
 			const average = await data.reduce((total, next) => total +
       next, 0) / data.length;
@@ -35,9 +30,10 @@ const Gauge = ({name, data}) => {
 
 	const getFormatText = (val) => {
 		if (name === 'Temperature') {
-			return Math.round((val/6.67+14))+'°C';
+			// return Math.round((val/6.67+14))+'°C';
+			return (val/6.67+14).toFixed(2) + '°C';
 		}
-		return Math.round(val)+'%';
+		return val+'%';
 	};
 
 	const getFormatArcLength = () => {
@@ -53,37 +49,40 @@ const Gauge = ({name, data}) => {
 		);
 	}
 
-	const paperStyle = {
+	const cardStyle = {
 		height: 200,
-		width: 'auto',
+		width: 500,
 		textAlign: 'center',
 		paddingBottom: '250px',
 		margin: 'auto',
 	};
 
 	return (
-		<Paper
-			sx={paperStyle}
+		<Card
+			sx={cardStyle}
 		>
 			<Typography variant="h4" noWrap component="div"
 				sx={{fontFamily: 'Open Sans'}}>
 				{name}
 			</Typography>
-			<GaugeChart
-				style={chartStyle}
-				id="gauge-chart"
-				colors={['#009DDC', '#57C61A', '#c12d3f']}
-				arcWidth={0.2}
-				textColor="#black"
-				needleColor="#464A4F"
-				needleBaseColor="#464A4F"
-				percent={value}
-				arcsLength={getFormatArcLength()}
-				arcPadding={0.01}
-				formatTextValue={(val) => getFormatText(val)}
-			/>
-
-		</Paper>
+			<CardMedia
+				alt={`gauge for ${name}`}
+			>
+				<GaugeChart
+					style={gaugeStyle.chartStyle}
+					id="gauge-chart"
+					colors={['#009DDC', '#57C61A', '#c12d3f']}
+					arcWidth={0.2}
+					textColor="#black"
+					needleColor="#464A4F"
+					needleBaseColor="#464A4F"
+					percent={value}
+					arcsLength={getFormatArcLength()}
+					arcPadding={0.01}
+					formatTextValue={(val) => getFormatText(val)}
+				/>
+			</CardMedia>
+		</Card>
 	);
 };
 
