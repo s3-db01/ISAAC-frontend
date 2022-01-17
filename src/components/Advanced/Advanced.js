@@ -18,51 +18,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-// const latestReadingIotModules = [
-// 	{
-// 		x: 4,
-// 		y: 3,
-// 		temperature: 24.5,
-// 		humidity: 31.5,
-// 		date: '12/20/2021',
-// 	},
-// 	{
-// 		x: 12,
-// 		y: 20,
-// 		temperature: 21,
-// 		humidity: 40,
-// 		date: '11/19/2021',
-// 	},
-// 	{
-// 		x: 15,
-// 		y: 12,
-// 		temperature: 25,
-// 		humidity: 33,
-// 		date: '11/19/2021',
-// 	},
-// 	{
-// 		x: 15,
-// 		y: 12,
-// 		temperature: 25,
-// 		humidity: 33,
-// 		date: '11/19/2021',
-// 	},
-// 	{
-// 		x: 15,
-// 		y: 12,
-// 		temperature: 25,
-// 		humidity: 33,
-// 		date: '11/19/2021',
-// 	},
-// 	{
-// 		x: 11,
-// 		y: 4,
-// 		temperature: 25,
-// 		humidity: 33,
-// 		date: '11/19/2021',
-// 	}
-// ];
-
 const Advanced = ({data, iotFilterHandler}) => {
 	const [latestReadings, setLatestReadings] = useState(null);
 	const classes = useStyles();

@@ -9,19 +9,12 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import { getMeasurementArray } from '../services/dashboardGrapService';
 
-// const ref = useRef();
+import dashboardGraphStyle from './styles/dashboardGraphStyle';
+
 const DashboardGraphs = ({data}) => {
 	const [measurement, setMeasurement] = useState(Measurement.TEMPERATURE);
 
 	const graphChildRef = useRef(null);
-
-	const paperStyle = {
-		height: 340,
-		width: 'auto',
-		textAlign: 'center',
-		paddingBottom: '250px',
-		margin: 'auto',
-	};
 
 
 	let graphData = null;
@@ -29,7 +22,6 @@ const DashboardGraphs = ({data}) => {
 	function setGraphData() {
 		// const lastWeekMeasurements = getMeasurementArray(getLastWeekDate());
 		const thisWeekMeasurements = getMeasurementArray(new Date(), data, measurement);
-		console.log(thisWeekMeasurements, data);
 		graphData = {
 			labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
 				'Friday', 'Saturday', 'Sunday'],
@@ -78,23 +70,15 @@ const DashboardGraphs = ({data}) => {
 		setMeasurement(nextMeasurement(measurement));
 		graphChildRef.current.updateGraph();
 	}
-	const btnStyle = {
-		fontFamily: 'Open Sans',
-		textTransform: 'none',
-		fontWeight: 'bold',
-		marginTop: 10,
-		radius: 0.1,
-		borderRadius: 10
-	};
 
 	return (
 		<div>
-			<Paper sx={paperStyle}>
+			<Paper sx={dashboardGraphStyle.paperStyle}>
 				<Button
 					variant="contained"
 					color='primary'
 					onClick={() => updateDatasets()}
-					style={btnStyle}>Switch
+					style={dashboardGraphStyle.btnStyle}>Switch
 				</Button>
 				<LineGraph
 					data={graphData}

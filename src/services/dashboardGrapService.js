@@ -10,7 +10,6 @@ export function getMeasurementArray(date, data, measurement) {
 	// get an array with entries of current week
 	const currentWeekEntries = data.filter((obj) =>
 		obj.dateTime >= firstDay && obj.dateTime <= lastDay);
-	console.log('currentWeekEntries', currentWeekEntries);
 	// used so Monday is first day of the week not Sunday
 	function getDayExtended(date) {
 		let day = date.getDay();
@@ -29,7 +28,6 @@ export function getMeasurementArray(date, data, measurement) {
 			average: 0,
 		};
 	}
-	console.log(entries);
 	const counter = [0, 0, 0, 0, 0, 0, 0];
 
 	if (measurement === Measurement.TEMPERATURE) {
@@ -63,12 +61,10 @@ export function getMeasurementArray(date, data, measurement) {
 			}
 		});
 	}
-	console.log(entries);
 	// calculate average
 	for (let index = 0; index < 7; index++) {
 		entries[index].average /= counter[index];
 		entries[index].average = entries[index].average.toPrecision(3);
 	}
-	console.log('entries', entries);
 	return entries.filter((obj) => obj.maximum !== 0);
 }
