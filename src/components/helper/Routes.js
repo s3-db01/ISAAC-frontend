@@ -6,8 +6,13 @@ import Heatmap from '../Heatmap';
 import Notifications from '../Notifications';
 import Advanced from '../Advanced/Advanced';
 import Settings from '../Settings';
+
 import { serverFetchWithFiltering } from '../../utils/server-fetch';
 import { iotFilterHandler } from '../../services/iotFilterService';
+
+import {serverFetch} from '../../utils/server-fetch';
+import Logout from '../Logout';
+import Profile from '../Profile';
 import {
 	Switch,
 	Route,
@@ -40,7 +45,7 @@ const Routes = () => {
 				<Advanced data={data} iotFilterHandler={(iot) => iotFilterHandler(iot, iotFilter, setIotFilter)}/>
 			</Route>
 			<Route path='/settings'>
-				<Settings />
+				<Profile />
 			</Route>
 			<Route path='/'>
 				<Dashboard data={data}/>
