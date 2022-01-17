@@ -30,8 +30,8 @@ const Gauge = ({name, data}) => {
 
 	const getFormatText = (val) => {
 		if (name === 'Temperature') {
-			return Math.round((val/6.67+14))+'°C';
-			// return val + '°C';
+			// return Math.round((val/6.67+14))+'°C';
+			return (val/6.67+14).toFixed(2) + '°C';
 		}
 		return val+'%';
 	};

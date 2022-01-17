@@ -30,7 +30,7 @@ const IndividualModule = ({iotModule, iotFilterHandler, currentState}) => {
        Humidty: {iotModule.humidity} %
 					</Typography>
 					<Typography sx={{ fontSize: 20 }} variant="h4" color="text.secondary" component="div" gutterBottom>
-       Last reading: {iotModule.updatedAt.toString('en-US')}
+       Last reading: {iotModule.dateTime.toString('en-US')}
 					</Typography>
 					<Switch {...label} 
 						onChange={(e) => switchIotHandler(e)}
