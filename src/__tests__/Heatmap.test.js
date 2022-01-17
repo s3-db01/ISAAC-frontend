@@ -26,7 +26,7 @@ describe('integration tests for heatmap', () => {
 		jest.clearAllMocks();
 	});
 
-	it('render without crash', async () => {
+	it.skip('render without crash', async () => {
 		// rendering the Heatmap
 		// render(<Heatmap data={data}/>);
 		const wrapper = mount(<Heatmap data={data}/>);
