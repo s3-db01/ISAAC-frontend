@@ -12,3 +12,11 @@ export const loadIotLocalFilters = (data, iotFilter, setIotFilter) => {
 export const getAllAvailableIot = (data, iotFilter) => {
 	return  data.filter((obj) => !iotFilter.has(`${obj.x}-${obj.y}`));
 };
+
+export const handleData = (rawData) => {
+	rawData.map((obj) => {
+		obj.dateTime = new Date(obj.updatedAt);
+		return obj;
+	});
+	return rawData;
+};

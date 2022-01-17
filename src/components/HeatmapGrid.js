@@ -162,7 +162,6 @@ const HeatmapGrid = ({data}) => {
 			blur: .9,
 		};
 		heatmapInstance.configure(nuConfig);
-		console.log(points);
 
 		// heatmap data format
 		const dataHeatmap = {
@@ -172,7 +171,6 @@ const HeatmapGrid = ({data}) => {
 
 		// if you have a set of datapoints always use setData instead of addData
 		// for data initialization
-		// console.log(dataHeatmap);
 		heatmapInstance.setData(dataHeatmap);
 	}, []);
 

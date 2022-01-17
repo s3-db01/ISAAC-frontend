@@ -11,6 +11,7 @@ import { getMeasurementArray } from '../services/dashboardGrapService';
 
 // const ref = useRef();
 const DashboardGraphs = ({data}) => {
+	console.log(data);
 	const [measurement, setMeasurement] = useState(Measurement.TEMPERATURE);
 
 	const graphChildRef = useRef(null);
@@ -29,7 +30,6 @@ const DashboardGraphs = ({data}) => {
 	function setGraphData() {
 		// const lastWeekMeasurements = getMeasurementArray(getLastWeekDate());
 		const thisWeekMeasurements = getMeasurementArray(new Date(), data, measurement);
-		console.log(thisWeekMeasurements, data);
 		graphData = {
 			labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
 				'Friday', 'Saturday', 'Sunday'],
