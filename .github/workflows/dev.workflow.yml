@@ -10,9 +10,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
     env: 
       SKIP_PREFLIGHT_CHECK: true
-      
+
     strategy:
       matrix:
         node-version: [14.x]

@@ -22,10 +22,15 @@ export function getMeasurementArray(date, data, measurement) {
 	// create array that stores mininmum value, maximum and the average
 	const entries = [];
 	for (let index = 0; index < 7; index++) {
+		// entries[index] = {
+		// 	minimum: Number.MAX_SAFE_INTEGER,
+		// 	maximum: 0,
+		// 	average: 0,
+		// };
 		entries[index] = {
 			minimum: Number.MAX_SAFE_INTEGER,
-			maximum: 0,
-			average: 0,
+			maximum: null,
+			average: null,
 		};
 	}
 	const counter = [0, 0, 0, 0, 0, 0, 0];
@@ -66,5 +71,9 @@ export function getMeasurementArray(date, data, measurement) {
 		entries[index].average /= counter[index];
 		entries[index].average = entries[index].average.toPrecision(3);
 	}
-	return entries.filter((obj) => obj.maximum !== 0);
+	return entries.map((obj) => {
+		if(obj.minimum === Number.MAX_SAFE_INTEGER)
+			obj.minimum = null;
+		return obj;
+	});
 }

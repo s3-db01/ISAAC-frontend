@@ -19,7 +19,6 @@ const Routes = () => {
 	const [iotFilter, setIotFilter] = React.useState(new Set());
 
 	useEffect( async () => {
-		console.log(iotFilter);
 		try {
 			const rawData = await serverFetchWithFiltering(iotFilter, setIotFilter);
 			setData(rawData);

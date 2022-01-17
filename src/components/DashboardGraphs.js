@@ -20,8 +20,8 @@ const DashboardGraphs = ({data}) => {
 	let graphData = null;
 	setGraphData();
 	function setGraphData() {
-		// const lastWeekMeasurements = getMeasurementArray(getLastWeekDate());
 		const thisWeekMeasurements = getMeasurementArray(new Date(), data, measurement);
+
 		graphData = {
 			labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
 				'Friday', 'Saturday', 'Sunday'],
