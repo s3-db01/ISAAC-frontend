@@ -31,7 +31,7 @@ const Heatmap = ({data}) => {
 		}
 	}
 	function getLastEntriesAverage(lastEntries) {
-		let average;
+		let average = 0;
 		for(let index = 0; index < lastEntries.length; index++){
 			average += lastEntries[index];
 		}

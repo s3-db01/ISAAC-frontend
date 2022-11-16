@@ -48,7 +48,7 @@
     "test": "jest --runInBand --config=jest.config.json",
     "ciTest": "jest --ci --runInBand --config=jest.config.json",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 5001"
+    "server": "node generateDb.mjs && json-server --watch db.json --port 5001"
   },
   "eslintConfig": {
     "extends": [

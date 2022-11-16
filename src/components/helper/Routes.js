@@ -22,10 +22,18 @@ import {
 const Routes = () => {
 	const [data, setData] = React.useState([]);
 	const [iotFilter, setIotFilter] = React.useState(new Set());
+	const [lastEntries, setLastEntries] = React.useState([]);
 
 	useEffect( async () => {
 		try {
 			const rawData = await serverFetchWithFiltering(iotFilter, setIotFilter);
+			
+			const entries = [];
+			for (let index = rawData.length - 1; index >= rawData.length - 18; index--) {
+				entries.push(rawData[index]);
+			}
+			setLastEntries(entries);
+
 			setData(rawData);
 		}
 		catch (error) {
@@ -36,7 +44,7 @@ const Routes = () => {
 	return (
 		<Switch>
 			<Route path="/heatmap">
-				<Heatmap data={data}/>
+				<Heatmap data={lastEntries}/>
 			</Route>
 			<Route path='/notifications'>
 				<Notifications />
